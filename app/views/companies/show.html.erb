@@ -1,19 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
- <div class="centered-box">
-  <div class= "centered-box-content">
+  <div class= "stat text-center">
     <h2>GAZELLE 2342</h2>
-    <h3> Count down time to arrival </h3>
+  </div>
+    <div class="map text-center">
+       <h1>Map</h1>
     </div>
-  </div>
-  <div class="map">
-     <h1>Map</h1>
-  </div>
-  <div class= "stat">
-    <h2>Time till Gazelle arrives</h2>
-  </div>
-   <%= link_to 'Edit', edit_company_path(@company), class: "btn btn-danger" %> |
-   <%= link_to 'Back', companies_path, class: "btn btn-danger" %>
+    <div class= "stat text-center">
+      <h2>Count down time to arrival</h2>
+    </div>
+     <%= link_to 'Edit', edit_company_path(@company), class: "btn btn-danger" %> |
+     <%= link_to 'Back', companies_path, class: "btn btn-danger" %>
 </div>
 
