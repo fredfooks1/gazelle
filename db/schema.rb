@@ -10,10 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180521113040) do
+ActiveRecord::Schema.define(version: 20180521123504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_companies_on_user_id"
+  end
+
+  create_table "gazelle_capability_logs", force: :cascade do |t|
+    t.bigint "gazelle_runner_id"
+    t.bigint "task_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gazelle_runner_id"], name: "index_gazelle_capability_logs_on_gazelle_runner_id"
+    t.index ["task_category_id"], name: "index_gazelle_capability_logs_on_task_category_id"
+  end
+
+  create_table "gazelle_runners", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_gazelle_runners_on_user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_locations_on_company_id"
+  end
+
+  create_table "task_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "company_id"
+    t.bigint "gazelle_runner_id"
+    t.integer "cost_per_hour"
+    t.integer "task_time"
+    t.bigint "task_category_id"
+    t.bigint "pick_up_location_id"
+    t.bigint "drop_off_location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_tasks_on_company_id"
+    t.index ["drop_off_location_id"], name: "index_tasks_on_drop_off_location_id"
+    t.index ["gazelle_runner_id"], name: "index_tasks_on_gazelle_runner_id"
+    t.index ["pick_up_location_id"], name: "index_tasks_on_pick_up_location_id"
+    t.index ["task_category_id"], name: "index_tasks_on_task_category_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +88,12 @@ ActiveRecord::Schema.define(version: 20180521113040) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "companies", "users"
+  add_foreign_key "gazelle_capability_logs", "gazelle_runners"
+  add_foreign_key "gazelle_capability_logs", "task_categories"
+  add_foreign_key "gazelle_runners", "users"
+  add_foreign_key "locations", "companies"
+  add_foreign_key "tasks", "companies"
+  add_foreign_key "tasks", "gazelle_runners"
+  add_foreign_key "tasks", "task_categories"
 end
