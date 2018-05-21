@@ -1,0 +1,31 @@
+.centered-box {
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 50px;
+  margin: 50px 300px 50px 300px;
+}
+
+.centered-box-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+.map {
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 30px;
+  margin: 0px 40px;
+
+}
+
+
+.stat {
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 30px;
+  margin: 10px;
+}
+
+

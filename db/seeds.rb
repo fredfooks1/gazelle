@@ -7,15 +7,34 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts 'Cleaning database...'
-Users.destroy_all
 Company.destroy_all
+User.destroy_all
 
 puts 'Creating Users...'
 
-user = [{email: "fredfooks@me.com", password: 121212},
+users = [{email: "fredfooks@me.com", password: 121212},
         {email: "tina@gotto.do", password: 232323},
         {email: "magnus@minimus.latin", password: 34343434}
 ]
+
+
+users.each do |user|
+  User.create!(user)
+end
+
+users = User.all
+
+puts 'Creating Companies...'
+companies = [{name: "Le wagon"}, {name: "Copenhagen FC"}, {name: "Carbnb"}]
+
+companies.each do |company_hash|
+  company = Company.new(company_hash)
+  company.user = users.sample
+  company.save!
+end
+
+
+
 
 
 puts 'Creating Legs...'
@@ -31,6 +50,4 @@ gazelle_runners = [
 ]
 
 
-puts 'Creating Companies...'
-companies = [name: "Le wagon", name: "Copenhagen FC", name: "Ralph Lauren", name: "Vivino", name: "Carbnb"]
 
