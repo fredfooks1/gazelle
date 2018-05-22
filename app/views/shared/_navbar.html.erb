@@ -4,7 +4,6 @@
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-    <%= link_to "Become a gazelle", new_gazelle_runner_path, class: "btn-main" %>
 
     <% if user_signed_in? %>
 
@@ -35,6 +34,7 @@
         </div>
       </div>
     <% else %>
+      <%= link_to "Become a gazelle", new_gazelle_runner_path, class: "btn-main" %>
       <!-- Login link (when logged out) -->
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
