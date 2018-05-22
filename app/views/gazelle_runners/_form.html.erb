@@ -1,12 +1,11 @@
-
 <%= simple_form_for(@gazelle_runner) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-  </div>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+
+  <%= f.button :submit %>
+
 <% end %>

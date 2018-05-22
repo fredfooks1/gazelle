@@ -1,0 +1,14 @@
+.btn-main {
+  color: $red;
+  font-weight: lighter;
+  font-size: 14px;
+  padding: 10px 15px;
+  border: 1px solid $red;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+.btn-main:hover {
+  border: 1px solid $lightest-gray;
+  text-decoration: none;
+  color: $lightest-gray;
+}

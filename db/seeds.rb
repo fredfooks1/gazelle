@@ -49,6 +49,7 @@ gazelle_runners = [
    photo: "https://avatars1.githubusercontent.com/u/37999937?s=400&v=4", description: "I just finished High School and have always been interested in Coding. In my off year I decided to do the Le Wagon Bootcamp as I had seen it was the best/only one in Denmark :)" }
 ]
 
+
 gazelle_runners.each do |g_hash|
   gazelle_runner = GazelleRunner.new(g_hash)
   gazelle_runner.user = users.sample
@@ -72,22 +73,6 @@ sample_task.task_category = pick_and_drop
 sample_task.first_location = Location.new
 sample_task.second_location = Location.new
 puts " The company #{sample_task.company} needs the #{sample_task.task_category} task to be completed Asap!} successfully created" if sample_task.save
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
