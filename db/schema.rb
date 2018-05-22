@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180521123504) do
+ActiveRecord::Schema.define(version: 20180522111226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20180521123504) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photo"
+    t.string "description"
     t.index ["user_id"], name: "index_gazelle_runners_on_user_id"
   end
 
@@ -60,14 +62,14 @@ ActiveRecord::Schema.define(version: 20180521123504) do
     t.integer "cost_per_hour"
     t.integer "task_time"
     t.bigint "task_category_id"
-    t.bigint "pick_up_location_id"
-    t.bigint "drop_off_location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "first_location_id"
+    t.bigint "second_location_id"
     t.index ["company_id"], name: "index_tasks_on_company_id"
-    t.index ["drop_off_location_id"], name: "index_tasks_on_drop_off_location_id"
+    t.index ["first_location_id"], name: "index_tasks_on_first_location_id"
     t.index ["gazelle_runner_id"], name: "index_tasks_on_gazelle_runner_id"
-    t.index ["pick_up_location_id"], name: "index_tasks_on_pick_up_location_id"
+    t.index ["second_location_id"], name: "index_tasks_on_second_location_id"
     t.index ["task_category_id"], name: "index_tasks_on_task_category_id"
   end
 
