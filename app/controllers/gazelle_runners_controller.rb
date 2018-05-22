@@ -1,4 +1,4 @@
-class GazelleRunnerController < ApplicationController
+class GazelleRunnersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
   before_action :set_gazelle, only: [:show, :edit, :update, :destroy]
 
@@ -20,7 +20,7 @@ class GazelleRunnerController < ApplicationController
   def create
     @gazelle_runner = GazelleRunner.new(gazelle_params)
     if @gazelle_runner.save
-      redirect_to gazelle_runner_path(gazelle_runner)
+      redirect_to gazelle_runners_path(gazelle_runner)
     else
       render :new
     end
@@ -33,7 +33,7 @@ class GazelleRunnerController < ApplicationController
 
   def destroy
     @gazelle_runner.destroy
-    redirect_to gazelle_runner_path
+    redirect_to gazelle_runners_path
   end
 
   private
@@ -43,7 +43,7 @@ class GazelleRunnerController < ApplicationController
   end
 
   def set_gazelle
-    @gazelle_runner = Gazelle_runner.find(params[:id])
+    @gazelle_runner = GazelleRunner.find(params[:id])
   end
 
 end
