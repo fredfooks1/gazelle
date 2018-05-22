@@ -1,11 +1,14 @@
-<%= simple_form_for(@gazelle_runner) do |f| %>
+<%= simple_form_for(@gazelle_runner, @user) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <%= f.input :first_name %>
   <%= f.input :last_name %>
+  <%= f.input :email, required: true, autofocus: true %>
+  <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+  <%= f.input :password_confirmation, required: true %>
 
 
-  <%= f.button :submit %>
+  <%= f.button :submit, "Submit", class: "btn-solid" %>
 
 <% end %>
