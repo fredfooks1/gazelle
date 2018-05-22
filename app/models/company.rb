@@ -3,5 +3,8 @@ class Company < ApplicationRecord
   has_many :tasks
   validates :name, presence: true, uniqueness: true
 
+  def self.search(search)
+    where("task ILIKE ?", "%#{search}%")
+  end
 
 end
