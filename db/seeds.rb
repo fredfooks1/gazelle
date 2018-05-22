@@ -49,5 +49,11 @@ gazelle_runners = [
    photo: "https://avatars1.githubusercontent.com/u/37999937?s=400&v=4", description: "I just finished High School and have always been interested in Coding. In my off year I decided to do the Le Wagon Bootcamp as I had seen it was the best/only one in Denmark :)" }
 ]
 
+gazelle_runners.each do |gazelle_hash|
+  gazelle_runner = GazelleRunner.new(gazelle_hash)
+  gazelle_runner.user = gazelle_runner.sample
+  gazelle_runner.save!
+end
+
 
 

@@ -3,22 +3,22 @@ class GazelleRunnerController < ApplicationController
   before_action :set_gazelle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @gazelle_runners = Gazelle_runner.all
+    @gazelle_runners = GazelleRunner.all
   end
 
   def show
-    @gazelle_runner = Gazelle_runner.find(params[:id])
+    @gazelle_runner = GazelleRunner.find(params[:id])
   end
 
   def edit
   end
 
   def new
-    @gazelle_runner = Gazelle_runner.new
+    @gazelle_runner = GazelleRunner.new
   end
 
   def create
-    @gazelle_runner = Gazelle_runner.new(gazelle_params)
+    @gazelle_runner = GazelleRunner.new(gazelle_params)
     if @gazelle_runner.save
       redirect_to gazelle_runner_path(gazelle_runner)
     else
