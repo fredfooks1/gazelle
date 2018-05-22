@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6">
-      <div class="home-search-container shared-search-container">
-        <input type="text" class="search-bar" id="user-input" placeholder="Search for task">
-        <a href="#" class="search-btn icon"><i class="fa fa-search"></i></a>
-      </div>
+      <%= form_tag(companies_path, method: "get", class: "form-inline") do%>
+        <div class="home-search-container shared-search-container">
+        <%= text_field_tag :search, params[:search], placeholder: "Search Tasks", class: "search-bar" %>
+        <%= submit_tag "Search", :name => nil, class: "search-btn" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
