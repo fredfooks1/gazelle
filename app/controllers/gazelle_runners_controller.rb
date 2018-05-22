@@ -14,7 +14,7 @@ class GazelleRunnersController < ApplicationController
   end
 
   def new
-    @gazelle_runner = GazelleRunner.new
+    # @gazelle_runner = GazelleRunner.new
   end
 
   def create
