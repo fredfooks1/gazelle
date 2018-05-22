@@ -13,7 +13,7 @@
     <% @gazelle_runners.each do |gazelle_runner| %>
       <tr>
         <td><%= link_to 'Show', gazelle_runner %></td>
-        <td><%= link_to 'Edit', edit_gazelle_runner_path(gazelle_runner) %></td>
+        <td><%= link_to 'Edit', edit_gazelle_runners_path(gazelle_runner) %></td>
         <td><%= link_to 'Destroy', gazelle_runner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
