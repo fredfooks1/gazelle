@@ -1,0 +1,28 @@
+h1 {
+  font-size: 27px;
+  padding-bottom: 20px;
+  font-weight:lighter;
+}
+
+.wrapper-new-gazelle {
+  background-color: $lightest-gray;
+  color: $light-gray;
+  padding: 10px 20px 30px 20px;
+  border-radius: 2px;
+}
+
+.btn-solid {
+  color: white;
+  background-color: $red;
+  font-weight: lighter;
+  font-size: 14px;
+  padding: 10px 15px;
+  border: 1px solid $red;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+.btn-solid:hover {
+  text-decoration: none;
+  color: $lightest-gray;
+}
+
