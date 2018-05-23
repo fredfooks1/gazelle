@@ -40,11 +40,10 @@ class GazelleRunnersController < ApplicationController
   private
 
   def gazelle_params
-    params.require(:gazelle_runner).permit(:first_name, :last_name)
+    params.require(:gazelle_runner).permit(:first_name, :last_name, :photo)
   end
 
   def set_gazelle
     @gazelle_runner = GazelleRunner.find(params[:id])
   end
-
 end
