@@ -46,5 +46,4 @@ class GazelleRunnersController < ApplicationController
   def set_gazelle
     @gazelle_runner = GazelleRunner.find(params[:id])
   end
-
 end
