@@ -14,13 +14,14 @@ class GazelleRunnersController < ApplicationController
   end
 
   def new
-    # @gazelle_runner = GazelleRunner.new
+    @gazelle_runner = GazelleRunner.new
   end
 
   def create
     @gazelle_runner = GazelleRunner.new(gazelle_params)
+    @gazelle_runner.user = current_user
     if @gazelle_runner.save
-      redirect_to gazelle_runners_path(gazelle_runner)
+      redirect_to gazelle_runners_path(@gazelle_runner)
     else
       render :new
     end
@@ -39,7 +40,7 @@ class GazelleRunnersController < ApplicationController
   private
 
   def gazelle_params
-    params.require(:gazelle_runner).permit(:name)
+    params.require(:gazelle_runner).permit(:first_name, :last_name, :photo)
   end
 
   def set_gazelle
