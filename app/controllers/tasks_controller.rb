@@ -1,4 +1,25 @@
 class TasksController < ApplicationController
+
+  def index
+    @tasks = Task.all
+    # @tasks = Task.where.not(first_location: nil, second_location: nil)
+
+    @markers = @tasks.map do |task|
+      {
+        lat: task.first_location.latitude,
+        lng: task.first_location.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
+
+    @addresses_for_tasks = {}
+    @tasks.each do |task|
+      @addresses_for_tasks["#{task.first_location.latitude},#{task.first_location.longitude}"] =
+        { name: task.company.name, address: task.first_location.address, final_price: task.cost_per_hour * task.task_time }
+    end
+  end
+
+
   def show
     @task = Task.find(params[:id])
   end
@@ -24,7 +45,10 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name)
+    params
+      .require(:task)
+      .require(:description, :company_id, :cost_per_hour, :task_time, :task_category_id, :first_location)
+      .permit(:second_location, :gazelle_runner_id)
   end
 
   def set_task

@@ -3,6 +3,7 @@
 #
 
 puts 'Cleaning database...'
+Location.destroy_all
 Company.destroy_all
 GazelleRunner.destroy_all
 User.destroy_all
@@ -62,17 +63,28 @@ gazelle_runners = GazelleRunner.all
 puts 'Creating Task Categories ...'
 office_task = TaskCategory.create!(name: "Office")
 pick_and_drop = TaskCategory.create!(name: "Pick and Drop")
-task_categories = [office_task, pick_and_drop]
 
-puts 'Creating a single Task ...'
-task_hash = {cost_per_hour: 40, task_time: 4}
-sample_task = Task.new(task_hash)
-sample_task.gazelle_runner = gazelle_runners.sample
-sample_task.company = companies.sample
-sample_task.task_category = pick_and_drop
-sample_task.first_location = Location.new
-sample_task.second_location = Location.new
-puts " The company #{sample_task.company} needs the #{sample_task.task_category} task to be completed Asap!} successfully created" if sample_task.save
+puts 'Creating sample locations ...'
+addresses = ["18 Gasværksvej copenhagen", "15 Ahornsgade", "5 Snaregade"]
+addresses.each do |address_array|
+  location = Location.new(address: address_array)
+  location.company = companies.sample
+  puts "Address for #{location.company.name} is on #{location.address}" if location.save
+end
+
+locations = Location.all
+
+description = ["get some milk", "help round the office", "drop off some ink"]
+
+puts 'Creating a  Tasks ...'
+locations.each_with_index do |location, index|
+  task_hash = {cost_per_hour: 40, task_time: 4, task_category: office_task}
+  sample_task = Task.new(task_hash)
+  sample_task.first_location = location
+  sample_task.company = sample_task.first_location.company
+  sample_task.description = description[index-1]
+  puts "The company #{sample_task.company.name} needs the #{sample_task.task_category.name} task to be completed at #{sample_task.first_location.address}Asap!" if sample_task.save
+end
 
 
 
