@@ -1,4 +1,33 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_gazelle_runners_path(@gazelle_runner) %> |
+<div class="gazelle-show-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="task-box">
+        <h2> Task Number </h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="task-map">
+        <h2>Map</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="task-time">
+        <h2>Time till arrival</h2>
+      </div>
+    </div>
+  </div>
+    <p id="notice"><%= notice %></p>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_gazelle_runner_path(@gazelle_runner) %> |
+
 <%= link_to 'Back', gazelle_runners_path %>
