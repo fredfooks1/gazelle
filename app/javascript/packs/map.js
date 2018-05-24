@@ -128,11 +128,10 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
       const content_string = divS + companyName + companyAddress + companyPrice + divE
 
       element['infoWindow'] = { content: content_string };
-      var marker = map.createMarker(element);
+      var marker = map.createMarker(element, toggleBounce);
 
       var mark = map.addMarker(element);
-      console.log(mark);
-    theArray[index] = element;
+     theArray[index] = element;
 
   });
 
@@ -149,3 +148,24 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
 
 
 }
+
+
+function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
