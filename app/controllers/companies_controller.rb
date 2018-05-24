@@ -13,7 +13,7 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-  endg
+  end
 
   def update
     @company.update(company_params)
@@ -35,4 +35,3 @@ class CompaniesController < ApplicationController
       @company = Company.find(params[:id])
     end
   end
-end

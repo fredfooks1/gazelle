@@ -1,0 +1,29 @@
+.location {
+  display: flex;
+  flex: 0 0 400px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 10px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-wrap {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+
+.location, .options, .stat {
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
