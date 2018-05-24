@@ -1,4 +1,7 @@
 class CompaniesController < ApplicationController
+    skip_before_action :authenticate_user!, only: [:show, :index]
+    before_action :set_company, only: [ :edit, :update, :destroy]
+
   def index
     @companies = Company.all
     if params[:search]
@@ -13,8 +16,9 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:id])
+    @company = current_user.company
   end
+
 
   def edit
   end
@@ -32,7 +36,7 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name)
+    params.require(:company).require(:user_id).permit(:name)
   end
 
   def set_company

@@ -31,6 +31,13 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
+  def accept_task
+    @task = Task.find(params[:task])
+    @task.gazelle_runner = current_user.gazelle_runner
+    @task.state = "assigned"
+    @task.save
+    redirect_to task_path(@task)
+  end
 
   def update
     @task.update(task_params)
@@ -47,8 +54,8 @@ class TasksController < ApplicationController
   def task_params
     params
       .require(:task)
-      .require(:description, :company_id, :cost_per_hour, :task_time, :task_category_id, :first_location)
-      .permit(:second_location, :gazelle_runner_id)
+      .permit(:description, :company_id, :cost_per_hour, :task_time, :task_category_id, :first_location, :second_location, :gazelle_runner_id)
+
   end
 
   def set_task

@@ -7,31 +7,39 @@ Location.destroy_all
 Company.destroy_all
 GazelleRunner.destroy_all
 User.destroy_all
+Task.destroy_all
 
-puts 'Creating Users...'
-users = [{email: "fredfooks@me.com", password: 121212},
-        {email: "tina@gotto.do", password: 232323},
-        {email: "magnus@minimus.latin", password: 34343434},
-        {email: "ed@me.com", password: 111111},
-        {email: "ted@me.com", password: 111111},
-        {email: "fred@me.com", password: 111111},
-        {email: "ned@me.com", password: 111111},
-        {email: "shed@me.com", password: 111111},
-        {email: "sed@me.com", password: 111111}
-]
+puts 'Creating users...'
+        # The gazelle users start here
+gazelle_users = [{email: "fredfooks@me.com", password: 123456},
+        {email: "tina@gotto.do", password: 123456},
+        {email: "magnus@minimus.latin", password: 123456}]
 
-
-users.each do |user|
-  User.create!(user)
+g_users = []
+gazelle_users.each do |user|
+  g_users << User.create!(user)
 end
 
-users = User.all
+        # the companies start here
+company_users= [{email: "ed@me.com", password: 123456},
+        {email: "ted@me.com", password: 123456},
+        {email: "fred@me.com", password: 123456},
+        {email: "ned@me.com", password: 123456},
+        {email: "shed@me.com", password: 123456},
+        {email: "sed@me.com", password: 123456}]
+
+c_users = []
+company_users.each do |user|
+  c_users << User.create!(user)
+end
+
+
 
 puts 'Creating Companies...'
 companies = [{name: "Le wagon"}, {name: "Copenhagen FC"}, {name: "Carbnb"}]
-companies.each do |company_hash|
+companies.each_with_index do |company_hash, index|
   company = Company.new(company_hash)
-  company.user = users.sample
+  company.user = c_users[index]
   company.save!
 end
 
@@ -51,9 +59,9 @@ gazelle_runners = [
 ]
 
 
-gazelle_runners.each do |g_hash|
+gazelle_runners.each_with_index do |g_hash, index|
   gazelle_runner = GazelleRunner.new(g_hash)
-  gazelle_runner.user = users.sample
+  gazelle_runner.user = g_users[index]
   gazelle_runner.remote_photo_url = g_hash[:photo]
   puts "#{gazelle_runner.first_name} #{gazelle_runner.last_name} successfully created" if gazelle_runner.save
 end
@@ -66,23 +74,25 @@ pick_and_drop = TaskCategory.create!(name: "Pick and Drop")
 
 puts 'Creating sample locations ...'
 addresses = ["18 Gasværksvej copenhagen", "15 Ahornsgade", "5 Snaregade"]
-addresses.each do |address_array|
+addresses.each_with_index do |address_array, index|
   location = Location.new(address: address_array)
-  location.company = companies.sample
+  location.company = companies[index]
   puts "Address for #{location.company.name} is on #{location.address}" if location.save
 end
 
 locations = Location.all
 
-description = ["get some milk", "help round the office", "drop off some ink"]
+descriptions = ["get some milk", "We just need a health Gazelle to pronk around the office", "drop off some ink"]
+titles = ["Milk Shop", "Office help", "Outta Ink", "Out of Cheese"]
 
 puts 'Creating a  Tasks ...'
 locations.each_with_index do |location, index|
   task_hash = {cost_per_hour: 40, task_time: 4, task_category: office_task}
   sample_task = Task.new(task_hash)
-  sample_task.first_location = location
+  sample_task.first_location = locations[index]
   sample_task.company = sample_task.first_location.company
-  sample_task.description = description[index-1]
+  sample_task.description = descriptions[index]
+  sample_task.title = titles[index]
   puts "The company #{sample_task.company.name} needs the #{sample_task.task_category.name} task to be completed at #{sample_task.first_location.address}Asap!" if sample_task.save
 end
 
