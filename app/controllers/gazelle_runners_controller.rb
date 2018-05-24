@@ -21,7 +21,7 @@ class GazelleRunnersController < ApplicationController
     @gazelle_runner = GazelleRunner.new(gazelle_params)
 
     if @gazelle_runner.save
-      redirect_to gazelle_runners_path(gazelle_runner)
+      redirect_to gazelle_runners_path(@gazelle_runner)
     else
       render :new
     end
@@ -55,5 +55,4 @@ class GazelleRunnersController < ApplicationController
   def set_gazelle
     @gazelle_runner = GazelleRunner.find(params[:id])
   end
-
 end
