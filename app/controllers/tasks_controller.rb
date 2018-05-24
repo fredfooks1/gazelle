@@ -21,6 +21,7 @@ class TasksController < ApplicationController
 
 
   def show
+    @company = Company.find(params[:company_id])
     @task = Task.find(params[:id])
   end
 
@@ -28,6 +29,7 @@ class TasksController < ApplicationController
   end
 
   def new
+    @company = Company.find(params[:company_id])
     @task = Task.new
   end
 
@@ -38,6 +40,20 @@ class TasksController < ApplicationController
     @task.save
     redirect_to task_path(@task)
   end
+  
+  def create
+    company = Company.find(params[:company_id])
+    task = Task.new(task_params)
+    task.company = company
+    task.user = current_user
+
+    if task.save
+      redirect_to task_path(task)
+    else
+      render :new
+    end
+  end
+
 
   def update
     @task.update(task_params)

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :tasks
   patch "accept-task", to: "tasks#accept_task", as: :accept_task
   resources :gazelle_runners
+  resources :companies do
+    resources :tasks, only: [ :new, :show, :create, :destroy ]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 get 'design', to: 'pages#design'
 end

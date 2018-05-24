@@ -4,7 +4,7 @@ class Company < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def self.search(search)
-    where("task ILIKE ?", "%#{search}%")
+    where("tasks ILIKE ?", "%#{search}%")
   end
 
 end
