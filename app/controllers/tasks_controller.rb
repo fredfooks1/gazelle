@@ -34,13 +34,17 @@ class TasksController < ApplicationController
   end
 
   def create
-    company = Company.find(params[:company_id])
-    task = Task.new(task_params)
-    task.company = company
-    task.user = current_user
+    @company = Company.find(params[:company_id])
+    address = params.dig(:task, :first_location)
+    company_location = @company.locations.find_by(address: address)
+    company_location = Location.create(address: address) unless company_location
 
-    if task.save
-      redirect_to task_path(task)
+    @task = Task.new(task_params)
+    @task.company = @company
+    @task.first_location = company_location
+    @company.user = current_user
+    if @task.save
+      redirect_to company_task_path(@company, @task)
     else
       render :new
     end
@@ -62,8 +66,7 @@ class TasksController < ApplicationController
   def task_params
     params
       .require(:task)
-      .require(:description, :company_id, :cost_per_hour, :task_time, :task_category_id, :first_location)
-      .permit(:second_location, :gazelle_runner_id)
+      .permit(:second_location, :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :task_category_id)
   end
 
   def set_task
