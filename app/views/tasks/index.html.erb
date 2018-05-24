@@ -1,0 +1,16 @@
+<div
+  id="map"
+  style="width: 50%;
+  height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+  data-tasks="<%= @addresses_for_tasks.to_json %>"
+></div>
+
+<div class="drop-down-form">
+ <%= label_tag("Select a task") %>
+  <%= form_tag(gazelle_runner_path(current_user.gazelle_runner) , method: :patch) do %>
+    <%= select_tag "task",
+        options_for_select(@tasks.map { |task| ["#{task.company.name} - #{task.description}", task.id] }) %>
+    <%= submit_tag("Confirm") %>
+  <% end %>
+</div>
