@@ -1,29 +1,25 @@
-
-.centered-box {
-
+h2 {
+  font-size: 18px;
 }
 
-.centered-box_content {
-  background: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  padding: 50px;
-  margin:  40px;
+.order-summary-box {
+  background-color: white;
+  margin-top: 60px;
+  border-radius: 2px;
+  text-align: left;
+  padding: 5px 20px 30px 20px;
 }
 
-.map {
-  background: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  padding: 200px 10px;
-  margin: 20px;
-
+.order-summary {
+  padding-bottom: 5px;
+  padding-top: 10px;
+  border-bottom: .5px solid $lightest-gray;
 }
 
-
-.stat {
-  background: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  padding: 30px;
-  margin: 20px;
+.order-details {
+  padding-top: 20px;
 }
 
-
+.map-wrapper {
+  margin-top: 60px;
+}

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="company-show-wrapper">
+      <div class="col-xs-12 col-sm-6 ">
+        <div class="order-summary-box">
+          <div class="order-summary">
+            <h2>Order summary for <strong><%= @company.name %></strong></h2>
+          </div>
+          <div class="order-details">
+            <p>You have ordered a gazelle to <strong><%= @task.description %></strong></p>
+          </div>
+          <div class="order-details">
+            <% if @task.gazelle_runner %>
+              <p>Your gazelle will be <%= @task.gazelle_runner.first_name %></p>
+            <% else %>
+              <p>A gazelle will select this task soon!</p>
+            <% end %>
+          </div>
+          <div class="order-details">
+            <p>Your price will be <strong> <%= task.cost_per_hour %> DKK per hour</strong></p>
+          </div>
+          <div class="order-details">
+            <%= link_to "Accept and continue", "#", class: "btn-solid" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-wrapper">
+      <div class="col-xs-12 col-sm-6">
+        <div
+          id="map"
+          style="width: 100%;
+          height: 600px;"
+          data-markers="<%= @markers.to_json %>"
+          data-tasks="<%= @addresses_for_tasks.to_json %>"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
+
