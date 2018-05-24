@@ -19,6 +19,7 @@ class GazelleRunnersController < ApplicationController
 
   def create
     @gazelle_runner = GazelleRunner.new(gazelle_params)
+
     if @gazelle_runner.save
       redirect_to gazelle_runners_path(gazelle_runner)
     else
@@ -27,8 +28,10 @@ class GazelleRunnersController < ApplicationController
   end
 
   def update
-    @gazelle_runner.update(gazelle_params)
-    redirect_to gazelle_path(@gazelle_runner)
+    task = Task.find(gazelle_update_params)
+    @gazelle_runner.tasks << task
+    @gazelle_runner.save!
+    redirect_to gazelle_runner_path(@gazelle_runner)
   end
 
   def destroy
@@ -38,8 +41,15 @@ class GazelleRunnersController < ApplicationController
 
   private
 
+  def gazelle_update_params
+    params.require(:task)
+  end
+
   def gazelle_params
-    params.require(:gazelle_runner).permit(:name)
+    params
+    .require(:gazelle_runner)
+    .require(:first_name, :last_name, :description)
+    .permit(:photo)
   end
 
   def set_gazelle
