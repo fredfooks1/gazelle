@@ -31,11 +31,11 @@ class CompaniesController < ApplicationController
 
   private
 
-  def company_params
-    params.require(:company).permit(:name)
-  end
+    def company_params
+      params.require(:company).permit(:name)
+    end
 
-  def set_company
-    @company = Company.find(params[:id])
+    def set_company
+      @company = Company.find(params[:id])
+    end
   end
-end

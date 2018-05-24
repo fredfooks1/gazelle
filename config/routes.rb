@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root to: 'pages#home'
-  resources :companies
-  resources :tasks
   resources :gazelle_runners
+  resources :companies do
+    resources :tasks, only: [ :new, :show, :create, :destroy ]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 get 'design', to: 'pages#design'
 end
