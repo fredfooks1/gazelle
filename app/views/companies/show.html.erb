@@ -2,15 +2,12 @@
 
 <div class="container">
   <div class= "stat text-center">
-    <h2>GAZELLE 2342</h2>
+    <h1><%= @company.name%> Company Task Dashboard</h1>
   </div>
     <div class="map text-center">
-       <h1>Map</h1>
-    </div>
-    <div class= "stat text-center">
-      <h2>Count down time to arrival</h2>
+       <h1>Task Card</h1>
     </div>
      <%= link_to 'Edit', edit_company_path(@company), class: "btn btn-danger" %> |
-     <%= link_to 'Back', companies_path, class: "btn btn-danger" %>
+     <%= link_to 'Back', root_path, class: "btn btn-danger" %>
 </div>
 
