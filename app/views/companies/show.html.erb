@@ -2,15 +2,36 @@
 
 <div class="container">
   <div class= "stat text-center">
-    <h2>GAZELLE 2342</h2>
+    <h1><%= @company.name%> Company Task Dashboard</h1>
   </div>
-    <div class="map text-center">
-       <h1>Map</h1>
-    </div>
-    <div class= "stat text-center">
-      <h2>Count down time to arrival</h2>
-    </div>
+
+
+
+
+
+  <div>
+    <% @company.tasks.each do |task| %>
+      <div class="col-lg-12">
+        <div class="card-category" class="card">
+          <div class="card-categor">
+          <h2> <%= task.title %> </h2>
+          <p> <%= task.cost_per_hour %> kr / hour </p>
+          </div>
+          <%= link_to "", company_task_path(@company, task), class: "card-link" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <br>
+
+
+
+
+
+
+
      <%= link_to 'Edit', edit_company_path(@company), class: "btn btn-danger" %> |
-     <%= link_to 'Back', companies_path, class: "btn btn-danger" %>
+     <%= link_to 'Back', root_path, class: "btn btn-danger" %>
 </div>
 

@@ -8,6 +8,15 @@ class GazelleRunnersController < ApplicationController
 
   def show
     @gazelle_runner = GazelleRunner.find(params[:id])
+    @gazelle_runner = GazelleRunner.where.not(latitude: nil, longitude: nil)
+
+    @markers = @gazelle_runner.map do |gazelle_runner|
+      {
+        lat: gazelle_runner.latitude,
+        lng: gazelle_runner.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
   end
 
   def edit
@@ -19,16 +28,19 @@ class GazelleRunnersController < ApplicationController
 
   def create
     @gazelle_runner = GazelleRunner.new(gazelle_params)
+    @gazelle_runner.user = current_user
     if @gazelle_runner.save
-      redirect_to gazelle_runners_path(gazelle_runner)
+      redirect_to tasks_path
     else
       render :new
     end
   end
 
   def update
-    @gazelle_runner.update(gazelle_params)
-    redirect_to gazelle_path(@gazelle_runner)
+    task = Task.find(gazelle_update_params)
+    @gazelle_runner.tasks << task
+    @gazelle_runner.save!
+    redirect_to gazelle_runner_path(@gazelle_runner)
   end
 
   def destroy
@@ -38,12 +50,15 @@ class GazelleRunnersController < ApplicationController
 
   private
 
+  def gazelle_update_params
+    params.require(:task)
+  end
+
   def gazelle_params
-    params.require(:gazelle_runner).permit(:name)
+    params.require(:gazelle_runner).permit(:photo, :first_name, :last_name, :description)
   end
 
   def set_gazelle
     @gazelle_runner = GazelleRunner.find(params[:id])
   end
-
 end

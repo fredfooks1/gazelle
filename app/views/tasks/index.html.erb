@@ -1,0 +1,19 @@
+<div class="grid">
+  <h1>Task Center</h1>
+  <div class= "map-box">
+    <div
+      id="map"
+      data-markers="<%= @markers.to_json %>"
+      data-tasks="<%= @addresses_for_tasks.to_json %>">
+    </div>
+  </div>
+  <div class="drop-down-form">
+   <%= label_tag("Select a task") %>
+    <%= form_tag(accept_task_path , method: :patch) do %>
+      <%= select_tag "task",
+          options_for_select(@tasks.map { |task| ["#{task.company.name} - #{task.title}", task.id] }) %>
+          <br>
+      <%= submit_tag("Confirm") %>
+    <% end %>
+  </div>
+</div>
