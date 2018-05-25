@@ -23,10 +23,8 @@ end
         # the companies start here
 company_users= [{email: "ed@company.com", password: 123456},
         {email: "ted@me.com", password: 123456},
-        {email: "fred@me.com", password: 123456},
-        {email: "ned@me.com", password: 123456},
-        {email: "shed@me.com", password: 123456},
-        {email: "sed@me.com", password: 123456}]
+        {email: "fred@me.com", password: 123456}
+    ]
 
 c_users = []
 company_users.each do |user|
