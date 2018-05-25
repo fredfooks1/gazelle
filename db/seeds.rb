@@ -10,7 +10,7 @@ User.destroy_all
 Task.destroy_all
 
 puts 'Creating users...'
-        # The gazelle users start here
+
 gazelle_users = [{email: "fred@gazelle.com", password: 123456},
               {email: "tina@gazelle.com", password: 123456},
               {email: "magnus@minimus.latin", password: 123456}]
