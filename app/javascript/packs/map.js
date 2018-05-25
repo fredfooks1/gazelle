@@ -122,18 +122,28 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
 
       const divS = "<div class='overlay'><ul>"
       const divE = "</ul></div>"
-      const companyName = "<h2>Company: " + task.name + " </h2>"
+      const companyTitle = "<h2> " + task.title + ' - '+ task.name + " </h2>"
       const companyAddress = "<a>Address: " + task.address + " </a>"
       const companyPrice = "<a>Price: " + task.final_price + "DKK </a>"
-      const content_string = divS + companyName + companyAddress + companyPrice + divE
+      const content_string = divS + companyTitle + companyAddress + companyPrice + divE
 
       element['infoWindow'] = { content: content_string };
       var marker = map.createMarker(element);
 
       var mark = map.addMarker(element);
-     theArray[index] = element;
+      mark.addListener('click', toggleBounce);
+
+      theArray[index] = element;
+        function toggleBounce() {
+        if (mark.getAnimation() !== null) {
+          mark.setAnimation(null);
+        } else {
+          mark.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
 
   });
+
 
 
   if (markers.length === 0) {
