@@ -85,7 +85,7 @@ locations = Location.all
 descriptions = ["get some milk", "We just need a health Gazelle to pronk around the office", "drop off some ink"]
 titles = ["Milk Shop", "Office help", "Outta Ink", "Out of Cheese"]
 
-puts 'Creating a  Tasks ...'
+puts 'Creating a Tasks ...'
 locations.each_with_index do |location, index|
   task_hash = {cost_per_hour: 40, task_time: 4, task_category: office_task}
   sample_task = Task.new(task_hash)
