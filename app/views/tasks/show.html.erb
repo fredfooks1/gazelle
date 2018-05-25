@@ -1,1 +1,8 @@
 <p id="notice"><%= notice %></p>
+
+<% if current_user.gazelle_runner %>
+  <%= render 'gazelle-show', task: @task %>
+<% else %>
+  <%= render 'company-show', task: @task %>
+<% end %>
+

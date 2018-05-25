@@ -1,0 +1,41 @@
+
+.grid {display: grid;
+  grid-template-columns: 1fr ;
+  grid-template-rows: 50% 50%;
+  // height: calc(100vh);
+  padding: 30px;
+  margin: 0px 350px;
+
+}
+.grid h1 {
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 30px;
+  margin: 0px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.map-box {
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 30px;
+  margin: 10px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.drop-down-form {
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 30px;
+  margin: 0px 40px;
+}
+
+#map {
+  width: 100%;
+  height: 500px;
+}
+
+

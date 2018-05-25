@@ -131,8 +131,7 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
       var marker = map.createMarker(element);
 
       var mark = map.addMarker(element);
-      console.log(mark);
-    theArray[index] = element;
+     theArray[index] = element;
 
   });
 
@@ -149,3 +148,17 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
