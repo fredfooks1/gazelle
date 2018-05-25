@@ -21,8 +21,19 @@ class TasksController < ApplicationController
 
 
   def show
-    @company = Company.find(params[:company_id])
+   @company = current_user.company
+    # @company = Company.find(params[:company_id])
     @task = Task.find(params[:id])
+
+    @gazelle_runners = GazelleRunner.where.not(latitude: nil, longitude: nil)
+
+    @markers = @gazelle_runners.map do |gazelle_runner|
+      {
+        lat: gazelle_runner.latitude,
+        lng: gazelle_runner.longitude
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
   end
 
   def edit
@@ -40,7 +51,7 @@ class TasksController < ApplicationController
     @task.save
     redirect_to task_path(@task)
   end
-  
+
   def create
     company = Company.find(params[:company_id])
     task = Task.new(task_params)

@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-sm-6 ">
         <div class="order-summary-box">
           <div class="order-summary">
-            <h2>Order summary for <strong><%= @company.name %></strong></h2>
+            <h2>Order summary for <strong><%= @task.company.name %></strong></h2>
           </div>
           <div class="order-details">
             <p>You have ordered a gazelle to <strong><%= @task.description %></strong></p>
@@ -27,13 +27,7 @@
     </div>
     <div class="map-wrapper">
       <div class="col-xs-12 col-sm-6">
-        <div
-          id="map"
-          style="width: 100%;
-          height: 600px;"
-          data-markers="<%= @markers.to_json %>"
-          data-tasks="<%= @addresses_for_tasks.to_json %>"
-        ></div>
+        <div id="map"></div>
       </div>
     </div>
   </div>
