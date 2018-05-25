@@ -1,10 +1,15 @@
+<div class="headline-container">
+<h1>The convenient & fast way to get help around the office</h1>
+<h2>Get quick help from our friendly & efficient gazelles</h2>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6">
       <% if current_user && current_user.company %>
         <%= form_tag(new_company_task_path(current_user.company), method: "get", class: "form-inline") do%>
           <div class="home-search-container shared-search-container">
-          <%= text_field_tag :search, params[:search], placeholder: "Search Tasks", class: "search-bar" %>
+          <%= text_field_tag :search, params[:search], placeholder: "Create a task e.g. office task or pick-up", class: "search-bar" %>
           <%= submit_tag "Search", :name => nil, class: "search-btn" %>
           </div>
         <% end %>
