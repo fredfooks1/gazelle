@@ -12,8 +12,8 @@ Task.destroy_all
 puts 'Creating users...'
         # The gazelle users start here
 gazelle_users = [{email: "fred@gazelle.com", password: 123456},
-        {email: "tina@gazelle.com", password: 123456},
-        {email: "magnus@minimus.latin", password: 123456}]
+              {email: "tina@gazelle.com", password: 123456},
+              {email: "magnus@minimus.latin", password: 123456}]
 
 g_users = []
 gazelle_users.each do |user|
