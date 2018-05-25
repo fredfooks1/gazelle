@@ -96,6 +96,7 @@ locations.each_with_index do |location, index|
   sample_task.company = sample_task.first_location.company
   sample_task.description = descriptions[index]
   sample_task.title = titles[index]
+  sample_task.state = "pending"
   puts "The company #{sample_task.company.name} needs the #{sample_task.task_category.name} task to be completed at #{sample_task.first_location.address}Asap!" if sample_task.save
 end
 

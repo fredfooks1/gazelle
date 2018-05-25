@@ -57,6 +57,7 @@ class TasksController < ApplicationController
     task = Task.new(task_params)
     task.company = company
     task.user = current_user
+    task.state = "pending"
 
     if task.save
       redirect_to task_path(task)
