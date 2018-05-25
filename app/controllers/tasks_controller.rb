@@ -39,16 +39,21 @@ class TasksController < ApplicationController
     @task.save
     redirect_to task_path(@task)
   end
-
+  
   def create
-    company = Company.find(params[:company_id])
-    task = Task.new(task_params)
-    task.company = company
-    task.user = current_user
-    task.state = "pending"
+    @company = Company.find(params[:company_id])
+    address = params.dig(:task, :first_location)
+    company_location = @company.locations.find_by(address: address)
+    company_location = Location.create(address: address) unless company_location
 
-    if task.save
-      redirect_to task_path(task)
+    @task = Task.new(task_params)
+    @task.company = @company
+    @task.first_location = company_location
+    task.state = "pending"
+    task.user = current_user
+    @company.user = current_user
+    if @task.save
+      redirect_to company_task_path(@company, @task)
     else
       render :new
     end
