@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.where(state: "pending")
+    @tasks = Task.where(state: "pending").reject { |task| task.first_location.nil? }
     # @tasks = Task.where.not(first_location: nil, second_location: nil)
 
     @markers = @tasks.map do |task|
