@@ -19,8 +19,18 @@ class TasksController < ApplicationController
   end
 
   def show
-    @company = current_user.company
+   @company = current_user.company
     @task = Task.find(params[:id])
+
+    @gazelle_runners = GazelleRunner.where.not(latitude: nil, longitude: nil)
+
+    @markers = @gazelle_runners.map do |gazelle_runner|
+      {
+        lat: gazelle_runner.latitude,
+        lng: gazelle_runner.longitude
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
   end
 
   def edit
@@ -39,7 +49,7 @@ class TasksController < ApplicationController
     @task.save
     redirect_to task_path(@task)
   end
-  
+
   def create
     @company = Company.find(params[:company_id])
     address = params.dig(:task, :first_location)
@@ -51,9 +61,14 @@ class TasksController < ApplicationController
     @task.first_location = company_location
     task.state = "pending"
     task.user = current_user
+
+    if task.save
+      redirect_to task_path(task)
+
     @company.user = current_user
     if @task.save
       redirect_to company_task_path(@company, @task)
+
     else
       render :new
     end

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180524141105) do
     t.string "description"
     t.float "latitude"
     t.float "longitude"
+    t.string "address"
     t.index ["user_id"], name: "index_gazelle_runners_on_user_id"
   end
 

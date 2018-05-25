@@ -8,6 +8,15 @@ class GazelleRunnersController < ApplicationController
 
   def show
     @gazelle_runner = GazelleRunner.find(params[:id])
+    @gazelle_runner = GazelleRunner.where.not(latitude: nil, longitude: nil)
+
+    @markers = @gazelle_runner.map do |gazelle_runner|
+      {
+        lat: gazelle_runner.latitude,
+        lng: gazelle_runner.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
   end
 
   def edit
