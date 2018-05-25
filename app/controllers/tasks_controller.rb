@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
-
   def index
-    @tasks = Task.all
+    @tasks = Task.where(state: "pending")
     # @tasks = Task.where.not(first_location: nil, second_location: nil)
 
     @markers = @tasks.map do |task|
@@ -15,13 +14,12 @@ class TasksController < ApplicationController
     @addresses_for_tasks = {}
     @tasks.each do |task|
       @addresses_for_tasks["#{task.first_location.latitude},#{task.first_location.longitude}"] =
-        { name: task.company.name, address: task.first_location.address, final_price: task.cost_per_hour * task.task_time }
+        { name: task.company.name, address: task.first_location.address, final_price: task.cost_per_hour * task.task_time, title: task.title }
     end
   end
 
-
   def show
-    @company = Company.find(params[:company_id])
+    @company = current_user.company
     @task = Task.find(params[:id])
   end
 
@@ -31,6 +29,7 @@ class TasksController < ApplicationController
   def new
     @company = Company.find(params[:company_id])
     @task = Task.new
+
   end
 
   def accept_task
@@ -40,7 +39,7 @@ class TasksController < ApplicationController
     @task.save
     redirect_to task_path(@task)
   end
-
+  
   def create
     @company = Company.find(params[:company_id])
     address = params.dig(:task, :first_location)
@@ -50,6 +49,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.company = @company
     @task.first_location = company_location
+    task.state = "pending"
+    task.user = current_user
     @company.user = current_user
     if @task.save
       redirect_to company_task_path(@company, @task)

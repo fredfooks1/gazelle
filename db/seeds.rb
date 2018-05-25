@@ -11,8 +11,8 @@ Task.destroy_all
 
 puts 'Creating users...'
         # The gazelle users start here
-gazelle_users = [{email: "fredfooks@me.com", password: 123456},
-        {email: "tina@gotto.do", password: 123456},
+gazelle_users = [{email: "fred@gazelle.com", password: 123456},
+        {email: "tina@gazelle.com", password: 123456},
         {email: "magnus@minimus.latin", password: 123456}]
 
 g_users = []
@@ -21,7 +21,7 @@ gazelle_users.each do |user|
 end
 
         # the companies start here
-company_users= [{email: "ed@me.com", password: 123456},
+company_users= [{email: "ed@company.com", password: 123456},
         {email: "ted@me.com", password: 123456},
         {email: "fred@me.com", password: 123456},
         {email: "ned@me.com", password: 123456},
@@ -36,7 +36,7 @@ end
 
 
 puts 'Creating Companies...'
-companies = [{name: "Le wagon"}, {name: "Copenhagen FC"}, {name: "Carbnb"}]
+companies = [{name: "Le Wagon"}, {name: "Copenhagen FC"}, {name: "Carbnb"}]
 companies.each_with_index do |company_hash, index|
   company = Company.new(company_hash)
   company.user = c_users[index]
@@ -93,8 +93,10 @@ locations.each_with_index do |location, index|
   sample_task.company = sample_task.first_location.company
   sample_task.description = descriptions[index]
   sample_task.title = titles[index]
+  sample_task.state = "pending"
   puts "The company #{sample_task.company.name} needs the #{sample_task.task_category.name} task to be completed at #{sample_task.first_location.address}Asap!" if sample_task.save
 end
+
 
 
 
