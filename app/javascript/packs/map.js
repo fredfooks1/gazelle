@@ -97,14 +97,9 @@ const styles = [
 ];
 
 
-
-
-
-
-
 const mapElement = document.getElementById('map');
-
 if (mapElement) { // don't try to build a map if there's no div#map to inject in
+  console.log("fsfjl")
   const map = new GMaps({ el: '#map', lat: 0, lng: 0 });
   map.addStyle({
     styles: styles,
@@ -141,7 +136,6 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
           mark.setAnimation(google.maps.Animation.BOUNCE);
         }
       }
-
   });
 
 
@@ -158,6 +152,7 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
 
 
 }
+
 
 
 

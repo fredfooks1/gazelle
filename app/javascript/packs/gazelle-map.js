@@ -100,21 +100,49 @@ const styles = [
 
 
 
-
-
-var mapElement = document.getElementById('company-show-map');
+const mapElement = document.getElementById('map-gazelle');
 if (mapElement) { // don't try to build a map if there's no div#map to inject in
-  console.log("company_map")
-  const map = new GMaps({ el: '#company-show-map', lat: 0, lng: 0 });
+  const map = new GMaps({ el: '#map-gazelle', lat: 0, lng: 0 });
   map.addStyle({
     styles: styles,
     mapTypeId: 'map_style'
   });
   map.setStyle('map_style');
+  const map_data = mapElement.dataset.markers
+  const markers = JSON.parse(map_data);
+  markers.forEach(function(element, index, theArray) {
+      // mark.addListener('click', toggleBounce);
 
-  var markers = JSON.parse(mapElement.dataset.markers);
+      //parse the data for the info window
+      const gazelle_runners = JSON.parse(mapElement.dataset.gazelles)
 
-  map.addMarkers(markers);
+      const key = element.lat + ',' + element.lng;
+      const gazelle_runner = gazelle_runners[key]
+
+      // content for the info-window
+      const divS = "<div class='overlay'>"
+      const divE = "</div>"
+      const GazelleRunnerName = "<a> " + gazelle_runner.first_name + " " + gazelle_runner.last_name + " </a>"
+
+      const content_string = divS + GazelleRunnerName  + divE
+
+      // Add info-windowws
+      element['infoWindow'] = { content: content_string };
+      theArray[index] = element;
+      const marker = map.createMarker(element);
+      const mark = map.addMarker(element);
+      console.log(theArray[index]);
+
+      // Add bounce
+       function toggleBounce() {
+        if (mark.getAnimation() !== null) {
+          mark.setAnimation(null);
+        } else {
+          mark.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+
+  });
 
   if (markers.length === 0) {
     map.setCenter(55.6761, 12.5683);
@@ -126,11 +154,6 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
     map.fitLatLngBounds(markers);
   }
 }
-
-
-
-
-
 
 
 

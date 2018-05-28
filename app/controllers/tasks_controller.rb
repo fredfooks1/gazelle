@@ -40,6 +40,20 @@ class TasksController < ApplicationController
     @company = Company.find(params[:company_id])
     @task = Task.new
 
+    @gazelle_runners = GazelleRunner.where.not(latitude: nil, longitude: nil)
+    @markers = @gazelle_runners.map do |gazelle_runner|
+      {
+        lat: gazelle_runner.latitude,
+        lng: gazelle_runner.longitude
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
+
+    @names_for_gazelles = {}
+    @gazelle_runners.each do |gazelle_runner|
+       @names_for_gazelles["#{gazelle_runner.latitude},#{gazelle_runner.longitude}"] =
+       { first_name: gazelle_runner.first_name, last_name: gazelle_runner.last_name}
+    end
   end
 
   def accept_task

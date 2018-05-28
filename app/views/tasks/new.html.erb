@@ -9,10 +9,13 @@
       <div class="col-xs-6">
         <div class="map-box-gazelles text-center">
           <h4>Gazelle Map</h4>
-          <div id="map"></div>
+          <div id="map-gazelle"
+          data-markers="<%= @markers.to_json %>"
+          data-gazelles="<%= @names_for_gazelles.to_json %>">
+          </div>
         </div>
       </div>
-    </div>
+  </div>
 </div>
 
 
