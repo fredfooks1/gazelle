@@ -34,6 +34,7 @@ end
 
 
 puts 'Creating Companies...'
+
 companies = [{name: "Le Wagon", address: "Prins Jørgens Gård 1"}, {name: "Copenhagen FC", address: "Per Henrik Lings Allé 2"}, {name: "Carbnb", address: " Fabriksområdet 52"}]
 companies.each_with_index do |company_hash, index|
   company = Company.new(company_hash)

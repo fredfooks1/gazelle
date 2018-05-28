@@ -7,17 +7,17 @@
             <h2>Order summary for <strong><%= @task.company.name %></strong></h2>
           </div>
           <div class="order-details">
-            <p>You have ordered a gazelle to <strong><%= @task.description %></strong></p>
+            <p>You have ordered a gazelle to <strong><%= @task.title %></strong></p>
           </div>
 
           <div class="order-details">
             <p>Your price will be <strong> <%= task.cost_per_hour %> DKK per hour</strong></p>
           </div>
-          <div class="order-details">
+          <div class="task-status">
             <% if @task.state = "pending" %>
-              <p>Task status: Pending</p>
+              <p class="task-status-pending">Your task will be assigned a gazelle shortly</p>
               <% else %>
-              <p>Task status: Assigned. You gazelle is on its way</p>
+              <p class="task-status-assigned">Your gazelle is on its way</p>
             <% end %>
 
           </div>
