@@ -19,19 +19,43 @@ class TasksController < ApplicationController
   end
 
   def show
-   @company = current_user.company
-   @company_marker =  {
-        lat: @company.latitude,
-        lng: @company.longitude
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-      }
+
+    @company = current_user.company
     @task = Task.find(params[:id])
-    @gazelle_runner = GazelleRunner.find(params[:gazelle_runner_id])
-    @gazelle_marker =  {
-        lat: @gazelle_runner.latitude,
-        lng: @gazelle_runner.longitude
+
+
+    if  params[:gazelle_runner_id]
+     @gazelle_runner = GazelleRunner.find(params[:gazelle_runner_id])
+    @markers =
+      {
+        lat: gazelle_runner.latitude,
+        lng: gazelle_runner.longitude,
+        icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }
+
+    else
+      @gazelle_runners = GazelleRunner.where.not(latitude: nil, longitude: nil)
+
+      @markers = @gazelle_runners.map do |gazelle_runner|
+        {
+          lat: gazelle_runner.latitude,
+          lng: gazelle_runner.longitude,
+          icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
+          # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        }
+      end
+    end
+
+    @location = @task.first_location
+    if @location
+      @markers << {
+          lat: @location.latitude,
+          lng: @location.longitude,
+          icon: ActionController::Base.helpers.asset_path("building.png")
+          # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        }
+    end
   end
 
   def edit
@@ -76,8 +100,10 @@ class TasksController < ApplicationController
   def create
     @company = Company.find(params[:company_id])
     address = params.dig(:task, :first_location)
-    # company_location = @company.locations.find_by(address: address)
-    task_location = Location.create(address: address)
+
+    company_location = @company.locations.find_by(address: address)
+    company_location = Location.create(address: address, company: @company) unless company_location
+
     @task = Task.new(task_params)
     @task.company = @company
     @task.first_location = task_location
