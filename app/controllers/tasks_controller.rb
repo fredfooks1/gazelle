@@ -79,7 +79,6 @@ class TasksController < ApplicationController
     @task.company = @company
     @task.first_location = task_location
     @task.state = "pending"
-
     @company.user = current_user
     if @task.save
       redirect_to company_task_path(@company, @task)

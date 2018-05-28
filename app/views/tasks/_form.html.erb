@@ -11,7 +11,7 @@
     <% end %>
 
   <%= f.input :task_time %>
-  <%= f.input :first_location, default: @company.address,  placeholder: @company.address %>
+  <%= f.input :first_location,  input_html: {value: @company.address} %>
   <%= f.input :description %>
   <%= f.input :cost_per_hour %>
   <%= f.association :task_category %>
