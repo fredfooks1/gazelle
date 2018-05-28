@@ -35,7 +35,9 @@ end
 
 puts 'Creating Companies...'
 
+
 companies = [{name: "Le Wagon", address: "Prins Jørgens Gård 1"}, {name: "Copenhagen FC", address: "Per Henrik Lings Allé 2"}, {name: "Carbnb", address: " Fabriksområdet 52"}]
+
 companies.each_with_index do |company_hash, index|
   company = Company.new(company_hash)
   company.user = c_users[index]
@@ -89,14 +91,14 @@ titles = ["Milk Shop", "Office help", "Outta Ink", "Out of Cheese"]
 
 puts 'Creating a Tasks ...'
 locations.each_with_index do |location, index|
-  task_hash = {cost_per_hour: 40, task_time: 4, task_category: office_task}
+  task_hash = {cost_per_hour: 40, task_time: 4}
   sample_task = Task.new(task_hash)
   sample_task.first_location = locations[index]
   sample_task.company = sample_task.first_location.company
   sample_task.description = descriptions[index]
   sample_task.title = titles[index]
   sample_task.state = "pending"
-  puts "The company #{sample_task.company.name} needs the #{sample_task.task_category.name} task to be completed at #{sample_task.first_location.address}Asap!" if sample_task.save
+  puts "The company #{sample_task.company.name} needs the #{sample_task.company.name} task to be completed at #{sample_task.first_location.address}Asap!" if sample_task.save
 end
 
 
