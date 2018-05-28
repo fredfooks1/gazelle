@@ -10,11 +10,11 @@
         <%= form_tag(new_company_task_path(current_user.company), method: "get", class: "form-inline") do%>
           <div class="home-search-container shared-search-container">
           <%= text_field_tag :search, params[:search], placeholder: "Create a task e.g. office task or pick-up", class: "search-bar" %>
-          <%= submit_tag "Search", :name => nil, class: "search-btn" %>
+          <%= submit_tag "Submit", :name => nil, class: "search-btn" %>
           </div>
         <% end %>
         <% else %>
-          <h1>Welcome to Gazelle</h1>
+
       <% end %>
     </div>
   </div>

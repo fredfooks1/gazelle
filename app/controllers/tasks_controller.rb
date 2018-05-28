@@ -37,9 +37,9 @@ class TasksController < ApplicationController
   end
 
   def new
+    @search_term = params[:search]
     @company = Company.find(params[:company_id])
     @task = Task.new
-
   end
 
   def accept_task
@@ -86,7 +86,7 @@ class TasksController < ApplicationController
   def task_params
     params
       .require(:task)
-      .permit(:second_location, :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :task_category_id)
+      .permit(:second_location, :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :task_category_id, :title)
 
   end
 
