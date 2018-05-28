@@ -2,7 +2,7 @@ class Task < ApplicationRecord
   belongs_to :company
   belongs_to :gazelle_runner, optional: true
 
-  belongs_to :task_category
+  belongs_to :task_category, optional: true
   belongs_to :first_location, class_name: 'Location', foreign_key: 'first_location_id', autosave: true
   belongs_to :second_location, class_name: 'Location', foreign_key: 'second_location_id', optional: :second_location_needed?
 

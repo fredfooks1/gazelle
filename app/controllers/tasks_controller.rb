@@ -19,9 +19,9 @@ class TasksController < ApplicationController
   end
 
   def show
+
     @company = current_user.company
     @task = Task.find(params[:id])
-
 
 
     if  params[:gazelle_runner_id]
@@ -56,14 +56,6 @@ class TasksController < ApplicationController
           # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
         }
     end
-
-    # @markers = # @tasks.map do |task|
-    #   [{
-    #     lat: @location.latitude,
-    #     lng: @location.longitude
-    #     # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-    #   }]
-    # end
   end
 
   def edit
