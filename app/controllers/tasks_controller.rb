@@ -19,21 +19,7 @@ class TasksController < ApplicationController
   end
 
   def show
-<<<<<<< HEAD
-   @company = current_user.company
-   @company_marker =  {
-        lat: @company.latitude,
-        lng: @company.longitude
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-      }
-    @task = Task.find(params[:id])
-    @gazelle_runner = GazelleRunner.find(params[:gazelle_runner_id])
-    @gazelle_marker =  {
-        lat: @gazelle_runner.latitude,
-        lng: @gazelle_runner.longitude
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-      }
-=======
+
     @company = current_user.company
     @task = Task.find(params[:id])
 
@@ -71,15 +57,6 @@ class TasksController < ApplicationController
           # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
         }
     end
-
-    # @markers = # @tasks.map do |task|
-    #   [{
-    #     lat: @location.latitude,
-    #     lng: @location.longitude
-    #     # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-    #   }]
-    # end
->>>>>>> 50ffcf7d1246cc020a466e80eb8acaf0d0e1e77b
   end
 
   def edit
