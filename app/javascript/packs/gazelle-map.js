@@ -108,8 +108,9 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
     mapTypeId: 'map_style'
   });
   map.setStyle('map_style');
-  const map_data = mapElement.dataset.markers
-  const markers = JSON.parse(map_data);
+
+
+  const markers = JSON.parse(mapElement.dataset.markers);
   markers.forEach(function(element, index, theArray) {
       // mark.addListener('click', toggleBounce);
 
@@ -131,7 +132,10 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
       theArray[index] = element;
       const marker = map.createMarker(element);
       const mark = map.addMarker(element);
-      console.log(theArray[index]);
+
+
+      const company_marker = JSON.parse(mapElement.dataset.company);
+      map.addMarker(company_marker);
 
       // Add bounce
        function toggleBounce() {
