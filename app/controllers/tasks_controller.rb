@@ -20,17 +20,18 @@ class TasksController < ApplicationController
 
   def show
    @company = current_user.company
-    @task = Task.find(params[:id])
-
-    @gazelle_runners = GazelleRunner.where.not(latitude: nil, longitude: nil)
-
-    @markers = @gazelle_runners.map do |gazelle_runner|
-      {
-        lat: gazelle_runner.latitude,
-        lng: gazelle_runner.longitude
+   @company_marker =  {
+        lat: @company.latitude,
+        lng: @company.longitude
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }
-    end
+    @task = Task.find(params[:id])
+    @gazelle_runner = GazelleRunner.find(params[:gazelle_runner_id])
+    @gazelle_marker =  {
+        lat: @gazelle_runner.latitude,
+        lng: @gazelle_runner.longitude
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
   end
 
   def edit

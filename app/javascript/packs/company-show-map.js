@@ -112,7 +112,7 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
   });
   map.setStyle('map_style');
 
-  var markers = JSON.parse(mapElement.dataset.markers);
+  var markers = [JSON.parse(mapElement.dataset.gazelle_marker),JSON.parse(mapElement.dataset.company_marker)];
 
   map.addMarkers(markers);
 
