@@ -14,25 +14,18 @@
   border-radius: 50%;
   background-color: white;
 }
-.card-category {
-  top: 10px;
-  left: 10px;
-  font-size: 15px;
-  text-transform: uppercase;
-  background-color: white;
-}
+
 .card-description {
   position: absolute;
   bottom: 10px;
   left: 10px;
-  background-color: white;
 }
 .card-description h2 {
   font-size: 24px;
 }
 .card-description p {
   font-size: 14px;
-  opacity: 0.7;
+  opacity: 0.9;
   font-weight: lighter;
 }
 .card-link {

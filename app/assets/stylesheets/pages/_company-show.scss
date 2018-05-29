@@ -1,53 +1,44 @@
-h2 {
-  font-size: 18px;
-}
-
-.order-summary-box {
+.card {
+  height: 175px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  background-position: center;
+  color: white;
+  position: relative;
   background-color: white;
-  margin-top: 60px;
-  border-radius: 2px;
-  text-align: left;
-  padding: 5px 20px 30px 20px;
+}
+.card-user {
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: white;
 }
 
-.order-summary {
-  padding-bottom: 5px;
-  padding-top: 10px;
-  border-bottom: .5px solid $lightest-gray;
+.card-description {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }
-
-.order-details {
-  padding-top: 20px;
+.card-description h2 {
+  font-size: 24px;
 }
-
-.map-wrapper {
-  margin-top: 60px;
-}
-
-.task-status {
-  padding-top: 20px;
-}
-
-.task-status-pending {
-  background-color: $red;
-  color: white;
-  font-weight: lighter;
+.card-description p {
   font-size: 14px;
-  padding: 10px 15px;
-  border-radius: 4px;
-  transition: background 0.3s ease;
-  text-align: center;
-}
-
-.task-status-assigned {
-  background-color: $green;
-  color: white;
+  opacity: 0.9;
   font-weight: lighter;
-  font-size: 14px;
-  padding: 10px 15px;
-  border-radius: 4px;
-  transition: background 0.3s ease;
-  text-align: center;
 }
-
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: black;
+  opacity: 0;
+}
+.card-link:hover {
+  opacity: 0.1;
+}
 
