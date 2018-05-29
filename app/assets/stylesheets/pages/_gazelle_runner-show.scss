@@ -36,3 +36,39 @@ h2 {
   justify-content: center;
   height: 100px;
 }
+
+.task-status-pending {
+  background-color: $red;
+  color: white;
+  font-weight: lighter;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.task-status-assigned {
+  background-color: $green;
+  color: white;
+  font-weight: lighter;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.task-status-completed {
+  background-color: $blue;
+  color: white;
+  font-weight: lighter;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+
+

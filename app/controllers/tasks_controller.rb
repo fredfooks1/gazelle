@@ -19,44 +19,27 @@ class TasksController < ApplicationController
   end
 
   def show
-
     @company = current_user.company
     @task = Task.find(params[:id])
 
-
-
-    if  params[:gazelle_runner_id]
-     @gazelle_runner = GazelleRunner.find(params[:gazelle_runner_id])
-    @markers =
-      {
-        lat: gazelle_runner.latitude,
-        lng: gazelle_runner.longitude,
-        icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-      }
-
-    else
-      @gazelle_runners = GazelleRunner.where.not(latitude: nil, longitude: nil)
-
-      @markers = @gazelle_runners.map do |gazelle_runner|
-        {
-          lat: gazelle_runner.latitude,
-          lng: gazelle_runner.longitude,
-          icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
-          # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-        }
-      end
-    end
-
     @location = @task.first_location
-    if @location
-      @markers << {
+    @markers = [{
           lat: @location.latitude,
           lng: @location.longitude,
           icon: ActionController::Base.helpers.asset_path("building.png")
-          # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-        }
+        }]
+
+
+     if  params[:gazelle_runner_id]
+     @gazelle_runner = GazelleRunner.find(params[:gazelle_runner_id])
+     @markers <<
+       {
+         lat: gazelle_runner.latitude,
+         lng: gazelle_runner.longitude,
+         icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
+       }
     end
+
   end
 
   def edit
@@ -107,7 +90,7 @@ class TasksController < ApplicationController
 
     @task = Task.new(task_params)
     @task.company = @company
-    @task.first_location = task_location
+    @task.first_location = company_location
     @task.state = "pending"
     @company.user = current_user
     if @task.save
@@ -118,6 +101,12 @@ class TasksController < ApplicationController
     end
   end
 
+  def complete
+    @task = Task.find(params[:id])
+    @task.state = "completed"
+    @task.save
+    redirect_to task_path(@task)
+  end
 
   def update
     @task.update(task_params)
@@ -134,7 +123,7 @@ class TasksController < ApplicationController
   def task_params
     params
       .require(:task)
-      .permit(:second_location, :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :task_category_id, :title)
+      .permit(:second_location, :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :title, :state)
 
   end
 
