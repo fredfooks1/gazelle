@@ -3,7 +3,7 @@
           <div class="order-title">
             <h2>Task summary for <strong><%= @task.gazelle_runner.first_name  %> <%= @task.gazelle_runner.last_name %> </strong></h2>
           </div>
-            <div class="order-details">
+            <div class="task-status">
               <% if @task.state == "pending" %>
                 <p class="task-status-pending">Task status: <%= @task.state %></p>
                   <% elsif @task.state == "assigned" %>
@@ -13,7 +13,6 @@
                   <% end %>
             </div>
         </div>
-
         <div class= "row">
           <div class="map-wrapper">
               <div id="company-show-map" style="height: 60vh;" data-markers="<%= @markers.to_json %>"></div>
