@@ -23,21 +23,25 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     @location = @task.first_location
-    @markers = [{
+    task_markers = {
           lat: @location.latitude,
           lng: @location.longitude,
           icon: ActionController::Base.helpers.asset_path("building.png")
-        }]
+        }
 
 
-     if  params[:gazelle_runner_id]
-     @gazelle_runner = GazelleRunner.find(params[:gazelle_runner_id])
-     @markers <<
-       {
-         lat: gazelle_runner.latitude,
-         lng: gazelle_runner.longitude,
+     if  @task.gazelle_runner
+     @gazelle_runner = @task.gazelle_runner
+     gazelle_marker = {
+         lat: @gazelle_runner.latitude,
+         lng: @gazelle_runner.longitude,
          icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
        }
+
+      @markers = [task_markers, gazelle_marker]
+
+
+
     end
 
   end
