@@ -15,7 +15,7 @@
       <p><%= task.description.capitalize %></p>
       <p><%= task.cost_per_hour %> kr / hour </p>
     </div>
-    <div class="task-status">
+    <div class="task-status-dash">
       <% if task.state = "pending" %>
         <p class="task-status-pending">Your task will be assigned a gazelle shortly</p>
         <% else %>
