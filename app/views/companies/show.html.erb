@@ -8,20 +8,29 @@
 
 
 
-
-  <div>
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/copenhagen');">
     <% @company.tasks.each do |task| %>
-      <div class="col-lg-12">
-        <div class="card-category" class="card">
-          <div class="card-categor">
-          <h2> <%= task.title %> </h2>
-          <p> <%= task.cost_per_hour %> kr / hour </p>
-          </div>
-          <%= link_to "", company_task_path(@company, task), class: "card-link" %>
-        </div>
-      </div>
+    <div class="card-description">
+      <h2><%= task.title %></h2>
+      <p><%= task.description.capitalize %></p>
+      <p><%= task.cost_per_hour %> kr / hour </p>
+    </div>
+    <div class="task-status-dash">
+      <% if task.state = "pending" %>
+        <p class="task-status-pending">Your task will be assigned a gazelle shortly</p>
+        <% else %>
+        <p class="task-status-assigned">Your gazelle is on its way</p>
+      <% end %>
+
+    </div>
+    <img class="card-user"> <%=  %>
+    <%= link_to "", company_task_path(@company, task), class: "card-link" %>
     <% end %>
   </div>
+
+
+
+
   <br>
   <br>
 
