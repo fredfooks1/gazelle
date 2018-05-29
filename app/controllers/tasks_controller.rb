@@ -21,28 +21,42 @@ class TasksController < ApplicationController
   def show
     @company = current_user.company
     @task = Task.find(params[:id])
+    if  @task.gazelle_runner && @task.second_location
+      @markers = [l_marker, g_marker, p_marker]
+    elsif @task.second_location
+      @markers = [l_marker, p_marker]
+    elsif @task.gazelle_runner
+      @markers = [l_marker, g_marker]
+    else
+      @markers = [l_marker]
+    end
+  end
 
-    @location = @task.first_location
-    task_markers = {
+  def l_marker
+  @location = @task.first_location
+    task_marker = {
           lat: @location.latitude,
           lng: @location.longitude,
           icon: ActionController::Base.helpers.asset_path("building.png")
         }
+  end
 
-
-     if  @task.gazelle_runner
-     @gazelle_runner = @task.gazelle_runner
-     gazelle_marker = {
-         lat: @gazelle_runner.latitude,
-         lng: @gazelle_runner.longitude,
-         icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
+  def g_marker
+    @gazelle_runner = @task.gazelle_runner
+      gazelle_marker = {
+        lat: @gazelle_runner.latitude,
+        lng: @gazelle_runner.longitude,
+        icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
        }
+  end
 
-      @markers = [task_markers, gazelle_marker]
-    else
-      @markers = [task_markers]
-    end
-
+  def p_marker
+       @pick_location = @task.second_location
+      pick_marker = {
+        lat: @pick_location.latitude,
+        lng: @pick_location.longitude,
+        # icon: ActionController::Base.helpers.asset_path("tree_icon.png")
+      }
   end
 
   def edit
