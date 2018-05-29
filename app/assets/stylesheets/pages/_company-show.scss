@@ -42,3 +42,32 @@
   opacity: 0.1;
 }
 
+.task-status {
+  padding-top: 20px;
+  padding-left: 400px;
+  padding-right: 400px;
+}
+
+.task-status-pending {
+  background-color: $red;
+  color: white;
+  font-weight: lighter;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.task-status-assigned {
+  background-color: $green;
+  color: white;
+  font-weight: lighter;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+

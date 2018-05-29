@@ -15,6 +15,14 @@
       <p><%= task.description.capitalize %></p>
       <p><%= task.cost_per_hour %> kr / hour </p>
     </div>
+    <div class="task-status">
+      <% if task.state = "pending" %>
+        <p class="task-status-pending">Your task will be assigned a gazelle shortly</p>
+        <% else %>
+        <p class="task-status-assigned">Your gazelle is on its way</p>
+      <% end %>
+
+    </div>
     <img class="card-user"> <%=  %>
     <%= link_to "", company_task_path(@company, task), class: "card-link" %>
     <% end %>
