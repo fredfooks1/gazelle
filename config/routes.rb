@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "company-dashboard", to: "companies#show", as: :company_dashboard
   resources :tasks
   patch "accept-task", to: "tasks#accept_task", as: :accept_task
+  get "complete-task", to: "tasks#complete", as: :complete_task
   resources :gazelle_runners
   resources :companies do
     resources :tasks, only: [ :new, :show, :create, :destroy ]

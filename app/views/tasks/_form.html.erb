@@ -12,12 +12,9 @@
 
 
   <%= f.input :title, input_html: { value: @search_term }, label: "Task title" %>
-  <%= f.input :first_location %>
   <%= f.input :task_time, label: "Length of task (hours)" %>
   <%= f.input :first_location,  input_html: {value: @company.address} %>
   <%= f.input :description, label: "Other details" %>
-  <%= f.input :cost_per_hour, label: "Pay per hour (DKK)" %>
-
-
+  <%= f.input :cost_per_hour, label: "Pay per hour (DKK)" %>s
   <%= f.button :submit, "Submit", class: "btn-solid" %>
   <% end %>
