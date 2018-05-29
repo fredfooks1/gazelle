@@ -21,29 +21,42 @@ class TasksController < ApplicationController
   def show
     @company = current_user.company
     @task = Task.find(params[:id])
+    if  @task.gazelle_runner && @task.second_location
+      @markers = [l_marker, g_marker, p_marker]
+    elsif @task.second_location
+      @markers = [l_marker, p_marker]
+    elsif @task.gazelle_runner
+      @markers = [l_marker, g_marker]
+    else
+      @markers = [l_marker]
+    end
+  end
 
-    @location = @task.first_location
-    task_markers = {
+  def l_marker
+  @location = @task.first_location
+    task_marker = {
           lat: @location.latitude,
           lng: @location.longitude,
           icon: ActionController::Base.helpers.asset_path("building.png")
         }
+  end
 
-
-     if  @task.gazelle_runner
-     @gazelle_runner = @task.gazelle_runner
-     gazelle_marker = {
-         lat: @gazelle_runner.latitude,
-         lng: @gazelle_runner.longitude,
-         icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
+  def g_marker
+    @gazelle_runner = @task.gazelle_runner
+      gazelle_marker = {
+        lat: @gazelle_runner.latitude,
+        lng: @gazelle_runner.longitude,
+        icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
        }
+  end
 
-      @markers = [task_markers, gazelle_marker]
-
-
-
-    end
-
+  def p_marker
+       @pick_location = @task.second_location
+      pick_marker = {
+        lat: @pick_location.latitude,
+        lng: @pick_location.longitude,
+        # icon: ActionController::Base.helpers.asset_path("tree_icon.png")
+      }
   end
 
   def edit
@@ -92,9 +105,15 @@ class TasksController < ApplicationController
     company_location = @company.locations.find_by(address: address)
     company_location = Location.create(address: address, company: @company) unless company_location
 
+
+    second_address = params.dig(:task, :second_location)
+    second_location = Location.create(address: second_address)
+
     @task = Task.new(task_params)
     @task.company = @company
     @task.first_location = company_location
+    @task.second_location = second_location
+
     @task.state = "pending"
     @company.user = current_user
     if @task.save
@@ -127,7 +146,7 @@ class TasksController < ApplicationController
   def task_params
     params
       .require(:task)
-      .permit(:second_location, :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :title, :state)
+      .permit( :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :title, :state)
 
   end
 
