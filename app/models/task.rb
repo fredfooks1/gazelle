@@ -4,7 +4,7 @@ class Task < ApplicationRecord
 
   belongs_to :task_category, optional: true
   belongs_to :first_location, class_name: 'Location', foreign_key: 'first_location_id', autosave: true
-  belongs_to :second_location, class_name: 'Location', foreign_key: 'second_location_id', optional: :second_location_needed?
+  belongs_to :second_location, class_name: 'Location', foreign_key: 'second_location_id', optional: true, autosave: true
 
 
   validates :description, presence: true, uniqueness: { scope: :company }
@@ -13,8 +13,8 @@ class Task < ApplicationRecord
   validates :task_time, presence: true, numericality: true
   validates :title, presence: true
 
-  def second_location_needed?
-    task_category.name != "Office"
-  end
+  # def second_location_needed?
+  #   task_category.name != "Office"
+  # end
 end
 

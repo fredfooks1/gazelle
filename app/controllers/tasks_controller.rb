@@ -39,9 +39,8 @@ class TasksController < ApplicationController
        }
 
       @markers = [task_markers, gazelle_marker]
-
-
-
+    else
+      @markers = [task_markers]
     end
 
   end
@@ -92,9 +91,15 @@ class TasksController < ApplicationController
     company_location = @company.locations.find_by(address: address)
     company_location = Location.create(address: address, company: @company) unless company_location
 
+
+    second_address = params.dig(:task, :second_location)
+    second_location = Location.create(address: second_address)
+
     @task = Task.new(task_params)
     @task.company = @company
     @task.first_location = company_location
+    @task.second_location = second_location
+
     @task.state = "pending"
     @company.user = current_user
     if @task.save
@@ -127,7 +132,7 @@ class TasksController < ApplicationController
   def task_params
     params
       .require(:task)
-      .permit(:second_location, :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :title, :state)
+      .permit( :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :title, :state)
 
   end
 
