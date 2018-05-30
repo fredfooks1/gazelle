@@ -96,11 +96,7 @@ const styles = [
     }
 ];
 
-
-
-
 const mapElement = document.getElementById('company-show-map');
-
 
 if (mapElement) { // don't try to build a map if there's no div#map to inject in
   const endPoints = JSON.parse(mapElement.dataset.end_points);
@@ -113,7 +109,6 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
   });
   map.setStyle('map_style');
 
-
   const markers = JSON.parse(mapElement.dataset.markers);
   map.addMarkers(markers);
   if (Object.keys(endPoints).length === 3){
@@ -124,7 +119,6 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
   } else if (endPoints.origin) {
       addRoute(endPoints.origin, endPoints.destination, map);
   }
-
 
   if (markers.length === 0) {
     map.setCenter(55.6761, 12.5683);
@@ -149,6 +143,7 @@ function addRoute (routeStart, routeEnd, map){
     })
 
 }
+
 
 
 

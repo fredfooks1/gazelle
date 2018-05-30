@@ -1,8 +1,4 @@
-.map-wrapper {
-  margin-top: 0px;
-}
-
-.order-title {
+.gazelle-order-title {
   background-color: white;
   border-radius: 2px;
   text-align: center;
@@ -10,17 +6,17 @@
 }
 
 
-.task-status {
+.gazelle-task-status {
   padding-top: 0px;
 }
 
-.order-details {
+.gazelle-order-details {
   padding-top: 0px;
 }
 
-h2 {
-  font-size: 18px;
-}
+// h2 {
+//   font-size: 18px;
+// }
 
 .task-status-pending {
   background-color: $red;
@@ -57,7 +53,7 @@ h2 {
 
 
 
-.order-summary-box {
+.gazelle-order-summary-box {
   background-color: white;
   margin-top: 10px;
   border-radius: 2px;
