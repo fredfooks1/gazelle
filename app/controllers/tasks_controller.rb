@@ -114,7 +114,7 @@ class TasksController < ApplicationController
 
     @task = Task.new(task_params)
     @task.company = @company
-    @task.first_location = task_location
+    @task.first_location = company_location
     @task.state = "pending"
     @company.user = current_user
     if @task.save
@@ -141,7 +141,7 @@ class TasksController < ApplicationController
   def task_params
     params
       .require(:task)
-      .permit(:second_location, :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :task_category_id, :title)
+      .permit(:second_location, :title, :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :task_category_id, :title)
 
   end
 
