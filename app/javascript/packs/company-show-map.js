@@ -96,13 +96,7 @@ const styles = [
     }
 ];
 
-
-
-
-
-
-
-const mapElement = document.getElementById('company-show-map');
+var mapElement = document.getElementById('company-show-map');
 if (mapElement) { // don't try to build a map if there's no div#map to inject in
   console.log("company_map")
   const map = new GMaps({ el: '#company-show-map', lat: 0, lng: 0 });
@@ -112,12 +106,8 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
   });
   map.setStyle('map_style');
 
-
-
-  const markers = JSON.parse(mapElement.dataset.markers);
+  var markers = JSON.parse(mapElement.dataset.markers);
   map.addMarkers(markers);
-
-
 
   if (markers.length === 0) {
     map.setCenter(55.6761, 12.5683);
@@ -129,6 +119,7 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
     map.fitLatLngBounds(markers);
   }
 }
+
 
 
 
