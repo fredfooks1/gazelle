@@ -21,20 +21,27 @@ class TasksController < ApplicationController
   def show
     @company = current_user.company
     @task = Task.find(params[:id])
+
     if  @task.gazelle_runner && @task.second_location
-      @markers = [l_marker, g_marker, p_marker]
-    elsif @task.second_location
-      @markers = [l_marker, p_marker]
+      @markers = [c_marker, g_marker, p_marker]
+      @end_points = {origin: @task.gazelle_runner.address, destination: @task.first_location.address, waypoint: @task.second_location.address}
+    elsif @task.second_location.address
+      @markers = [c_marker, p_marker]
+      @end_points = { destination: @task.first_location.address, waypoint: @task.second_location.address}
     elsif @task.gazelle_runner
-      @markers = [l_marker, g_marker]
+      @markers = [c_marker, g_marker]
+      @end_points = {origin: @task.gazelle_runner.address, destination: @task.first_location.address}
     else
-      @markers = [l_marker]
+      @markers = [c_marker]
     end
+
+
   end
 
-  def l_marker
+  def c_marker
+    # this is the marker of the company
   @location = @task.first_location
-    task_marker = {
+    {
           lat: @location.latitude,
           lng: @location.longitude,
           icon: ActionController::Base.helpers.asset_path("building.png")
@@ -42,6 +49,7 @@ class TasksController < ApplicationController
   end
 
   def g_marker
+    # this is the marker of the gazelle
     @gazelle_runner = @task.gazelle_runner
       gazelle_marker = {
         lat: @gazelle_runner.latitude,
@@ -51,6 +59,7 @@ class TasksController < ApplicationController
   end
 
   def p_marker
+    # this is the marker of the pick up location
        @pick_location = @task.second_location
       pick_marker = {
         lat: @pick_location.latitude,
@@ -80,6 +89,7 @@ class TasksController < ApplicationController
         lng: gazelle_runner.longitude
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }
+
     end
 
     @names_for_gazelles = {}

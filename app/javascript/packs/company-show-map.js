@@ -99,13 +99,14 @@ const styles = [
 
 
 
-
-
-
 const mapElement = document.getElementById('company-show-map');
+
+
 if (mapElement) { // don't try to build a map if there's no div#map to inject in
+  const endPoints = JSON.parse(mapElement.dataset.end_points);
+  console.log(endPoints)
   console.log("company_map")
-  const map = new GMaps({ el: '#company-show-map', lat: 0, lng: 0 });
+  const map = new GMaps({ el: '#company-show-map', lat: 55.6761, lng:  12.5683 });
   map.addStyle({
     styles: styles,
     mapTypeId: 'map_style'
@@ -113,10 +114,16 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
   map.setStyle('map_style');
 
 
-
   const markers = JSON.parse(mapElement.dataset.markers);
   map.addMarkers(markers);
-
+  if (Object.keys(endPoints).length === 3){
+    addRoute(endPoints.origin, endPoints.waypoint, map);
+    addRoute(endPoints.waypoint, endPoints.destination, map);
+  } else if (endPoints.waypoint) {
+      addRoute(endPoints.waypoint, endPoints.destination, map);
+  } else if (endPoints.origin) {
+      addRoute(endPoints.origin, endPoints.destination, map);
+  }
 
 
   if (markers.length === 0) {
@@ -131,8 +138,17 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
 }
 
 
+function addRoute (routeStart, routeEnd, map){
+    map.drawRoute({
+      origin: routeStart,
+      destination: routeEnd,
+      travelMode: 'driving',
+      strokeColor: '#41E8C0',
+      strokeOpacity: 0.9,
+      strokeWeight: 6
+    })
 
-
+}
 
 
 
