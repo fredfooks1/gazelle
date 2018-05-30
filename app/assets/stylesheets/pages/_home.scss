@@ -1,32 +1,34 @@
 // Specific CSS for your home-page
 .home-search-container {
-  margin-top: 25px;
+  margin-top: 170px;
   color: white;
 }
 
 .headline-container {
   text-align: center;
   color: white;
-  padding-top: 200px;
+  padding-top: 125px;
 }
 
 
 
 body, html {
     height: 100%;
-    background-color: #49C0A4;
+    background-color: grey;
     background: linear-gradient();
 }
 
-.bg {
-    /* The image used */
-    background-image: url("http://buzzhootroar.com/wp-content/uploads/BHR-pronking-gazelle-still.jpg");
 
-    /* Full height */
+//.bg2 {
+  //background-image: linear-gradient(grey, white, rgba(0,0,0,0));
+  //height: 100%;
+//}
+
+.bg {
+    background-image: url("https://files.slack.com/files-pri/T02NE0241-FAY9KBK6F/download/joel-herzog-105060-unsplash.jpg");
     height: 100%;
 
-    /* Center and scale the image nicely */
-    background-position: top;
+    background-position: center;
     background-repeat:   no-repeat;
-    background-size: 100%;
+    background-size: cover;
 }
