@@ -6,6 +6,8 @@
   border: 1px solid $red;
   border-radius: 4px;
   transition: background 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+
 }
 .btn-main:hover {
   border: 1px solid $lightest-gray;
