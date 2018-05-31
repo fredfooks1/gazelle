@@ -13,19 +13,22 @@
             <p class="company-task-status-pending">Your task will be assigned to a gazelle shortly</p>
              <% elsif task.state == "assigned" %>
             <p class="company-task-status-assigned">Your gazelle is on its way</p>
-            <% if task.gazelle_runner %>
-            <p>Your gazelle will be <%= task.gazelle_runner.first_name %></p>
-            <% end %>
             <% else %>
             <p class="company-task-status-completed">Task has been completed</p>
-            <% if task.gazelle_runner %>
-            <p>Your gazelle was <%= task.gazelle_runner.first_name %></p>
-            <% end %>
           <% end %>
         </div>
         <div class="card-description">
-          <h2><%= task.title %></h2>
-          <p><%= task.description.capitalize %></p>
+          <h2><%= task.title.capitalize %></h2>
+          <% if task.state == "pending" %>
+          <% elsif task.state == "assigned" %>
+            <% if task.gazelle_runner %>
+              <p>Your gazelle will be <%= task.gazelle_runner.first_name %></p>
+            <% end %>
+            <% else %>
+            <% if task.gazelle_runner %>
+              <p>Your gazelle was <%= task.gazelle_runner.first_name %></p>
+            <% end %>
+          <% end %>
           <p>Total price: <%= task.cost_per_hour * task.task_time %> </p>
         </div>
         <img class="card-user"> <%=  %>

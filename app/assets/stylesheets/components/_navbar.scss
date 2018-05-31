@@ -16,6 +16,7 @@
   font-size: 21px;
   color: white;
   text-decoration: none;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
   &:hover{
     text-decoration: none;
     color: $red;
@@ -44,9 +45,10 @@
 
 /* Navbar link */
 .navbar-wagon-link {
-  color: $lightest-gray;
+  color: white;
   font-size: 14px;
   text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
 .navbar-wagon-link:hover {
   color: $red;

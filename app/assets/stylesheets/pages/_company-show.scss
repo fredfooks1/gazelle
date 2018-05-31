@@ -49,7 +49,6 @@
   opacity: 0.1;
 }
 
-
 .company-task-status-pending {
   background-color: $red;
   color: white;
@@ -59,6 +58,7 @@
   border-radius: 4px 4px 0px 0px;
   transition: background 0.3s ease;
   text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 
 .company-task-status-assigned {
@@ -70,6 +70,7 @@
   border-radius: 4px 4px 0px 0px;
   transition: background 0.3s ease;
   text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 
 .company-task-status-completed {
@@ -81,6 +82,7 @@
   border-radius: 4px;
   transition: background 0.3s ease;
   text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 
 .stat-text-center {
