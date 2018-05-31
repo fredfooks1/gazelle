@@ -148,10 +148,11 @@ titles.each_with_index do |title, index|
   s_task.state = states[index]
   s_task.company = Company.first
   s_task.first_location = Location.first
+  unless s_task.state == "pending"
+    s_task.gazelle_runner = gazelle_runners.sample
+  end
   puts "The task #{s_task.title} for #{s_task.company.name} is #{s_task.state}" if s_task.save
 end
-
-
 
 
 

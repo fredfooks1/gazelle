@@ -64,7 +64,7 @@ class TasksController < ApplicationController
       pick_marker = {
         lat: @pick_location.latitude,
         lng: @pick_location.longitude,
-        # icon: ActionController::Base.helpers.asset_path("tree_icon.png")
+        icon: ActionController::Base.helpers.asset_path("placeholder-blue.png")
       }
   end
 
