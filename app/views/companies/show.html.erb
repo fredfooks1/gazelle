@@ -7,7 +7,7 @@
   <div class="row">
     <% @company.tasks.each do |task| %>
     <div class="col-xs-12 col-sm-6 col-lg-10 col-lg-offset-1">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/copenhagen');">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= task.photo %>');">
         <div class="task-status-dash">
           <% if task.state == "pending" %>
             <p class="company-task-status-pending">Your task will be assigned to a gazelle shortly</p>

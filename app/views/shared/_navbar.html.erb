@@ -7,7 +7,9 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <h4 class="navbar-wagon-item navbar-wagon-link">  <%=  current_user.company ? current_user.company.name : current_user.gazelle_runner.first_name   %></h4>
+      <%= link_to company_dashboard_path do %>
+        <h4 class="navbar-wagon-item navbar-wagon-link">  <%=  current_user.company ? current_user.company.name : current_user.gazelle_runner.first_name   %></h4>
+     <% end %>
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">

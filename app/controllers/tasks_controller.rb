@@ -25,7 +25,7 @@ class TasksController < ApplicationController
     if  @task.gazelle_runner && @task.second_location
       @markers = [c_marker, g_marker, p_marker]
       @end_points = {origin: @task.gazelle_runner.address, destination: @task.first_location.address, waypoint: @task.second_location.address}
-    elsif @task.second_location.address
+    elsif @task.second_location
       @markers = [c_marker, p_marker]
       @end_points = { destination: @task.first_location.address, waypoint: @task.second_location.address}
     elsif @task.gazelle_runner
@@ -44,7 +44,7 @@ class TasksController < ApplicationController
     {
           lat: @location.latitude,
           lng: @location.longitude,
-          icon: ActionController::Base.helpers.asset_path("building.png")
+          icon: ActionController::Base.helpers.asset_path("flag.png")
         }
   end
 
@@ -76,9 +76,8 @@ class TasksController < ApplicationController
     @company = Company.find(params[:company_id])
     @company_marker =  {
         lat: @company.latitude,
-        lng: @company.longitude
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-      }
+        lng: @company.longitude,
+        icon: ActionController::Base.helpers.asset_path("flag.png")      }
 
     @task = Task.new
 
@@ -86,8 +85,8 @@ class TasksController < ApplicationController
     @markers = @gazelle_runners.map do |gazelle_runner|
       {
         lat: gazelle_runner.latitude,
-        lng: gazelle_runner.longitude
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        lng: gazelle_runner.longitude,
+        icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
       }
 
     end
@@ -123,6 +122,7 @@ class TasksController < ApplicationController
     @task.company = @company
     @task.first_location = company_location
     @task.second_location = second_location
+    @task.photo = "/assets/generic-route.png"
 
     @task.state = "pending"
     @company.user = current_user

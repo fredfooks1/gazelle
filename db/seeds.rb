@@ -117,25 +117,10 @@ end
 
 locations = Location.all
 
-descriptions = ["get some milk", "We just need a health Gazelle to pronk around the office", "drop off some ink"]
-titles = ["Milk Shop", "Office help", "Outta Ink", "Out of Cheese"]
-
-puts 'Creating a Tasks ...'
-locations.each_with_index do |location, index|
-  task_hash = {cost_per_hour: 40, task_time: 4}
-  sample_task = Task.new(task_hash)
-  sample_task.first_location = locations[index]
-  sample_task.company = sample_task.first_location.company
-  sample_task.description = descriptions[index]
-  sample_task.title = titles[index]
-  sample_task.state = "pending"
-  puts "The company #{sample_task.company.name} needs the #{sample_task.company.name} task to be completed at #{sample_task.first_location.address}Asap!" if sample_task.save
-end
-
 titles = ["Get some Ink","Make Coffee for the office","Take minutes at a meeting", "Therapy help for Joe", "Coach England to the world cup final", "make Lampard and Gerrard work" ]
 s_descriptions = ["We need some blue inject ink from whsmith","We are brainstorming how to beat belgium", "Mr Hart needs a confidence boost having been dropped for england", "Southgate isn't quite upto the task", "Both the central midfield"]
 states = ["pending", "assigned", "completed", "completed", "completed"]
-
+photos = ["/assets/task-route1and2.png","/assets/task-route1and2.png","/assets/task-route3.png","/assets/task-route4.png","/assets/task-route5.png"]
 
 
 puts 'Creating Tasks for the sports company...'
@@ -147,6 +132,7 @@ titles.each_with_index do |title, index|
   s_task.description = s_descriptions[index]
   s_task.state = states[index]
   s_task.company = Company.first
+  s_task.photo = photos[index%photos.size]
   s_task.first_location = Location.first
   unless s_task.state == "pending"
     s_task.gazelle_runner = gazelle_runners.sample
@@ -154,6 +140,21 @@ titles.each_with_index do |title, index|
   puts "The task #{s_task.title} for #{s_task.company.name} is #{s_task.state}" if s_task.save
 end
 
+descriptions = ["get some milk", "We just need a health Gazelle to pronk around the office", "drop off some ink"]
+titles = ["Milk Shop", "Office help", "Outta Ink", "Out of Cheese"]
+
+puts 'Creating a Tasks ...'
+locations.each_with_index do |location, index|
+  task_hash = {cost_per_hour: 40, task_time: 4}
+  sample_task = Task.new(task_hash)
+  sample_task.first_location = locations[index]
+  sample_task.company = sample_task.first_location.company
+  sample_task.description = descriptions[index]
+  sample_task.title = titles[index]
+  sample_task.photo = "/assets/task-route3.png"
+  sample_task.state = "pending"
+  puts "The company #{sample_task.company.name} needs the #{sample_task.company.name} task to be completed at #{sample_task.first_location.address}Asap!" if sample_task.save
+end
 
 
 

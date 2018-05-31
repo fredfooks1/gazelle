@@ -13,8 +13,8 @@ class GazelleRunnersController < ApplicationController
     @markers = @gazelle_runner.map do |gazelle_runner|
       {
         lat: gazelle_runner.latitude,
-        lng: gazelle_runner.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        lng: gazelle_runner.longitude,
+        icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
       }
     end
   end
