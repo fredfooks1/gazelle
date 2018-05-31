@@ -18,6 +18,11 @@ h1 {
   margin-bottom: 10px;
 }
 
+.form-group.string.optional.task_second_location {
+  .form-control-label {
+    opacity: 0;
+  }
+}
 .wrapper-new-task {
   padding: 10px 20px 30px 20px;
   margin: 15px 0px;
