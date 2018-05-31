@@ -137,7 +137,7 @@ function addRoute (routeStart, routeEnd, map){
       origin: routeStart,
       destination: routeEnd,
       travelMode: 'driving',
-      strokeColor: '#41E8C0',
+      strokeColor: '#FF4D44',
       strokeOpacity: 0.9,
       strokeWeight: 6
     })
