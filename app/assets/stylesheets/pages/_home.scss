@@ -1,34 +1,26 @@
 // Specific CSS for your home-page
 .home-search-container {
-  margin-top: 170px;
-  color: white;
+  margin-top: 100px;
+  color: #525B5D;
+  padding-left: 90px;
 }
 
 .headline-container {
   text-align: center;
   color: white;
-  padding-top: 125px;
+  padding-top: 100px;
+  padding-right: 500px;
 }
-
-
 
 body, html {
     height: 100%;
-    background-color: grey;
-    background: linear-gradient();
 }
 
-
-//.bg2 {
-  //background-image: linear-gradient(grey, white, rgba(0,0,0,0));
-  //height: 100%;
-//}
-
 .bg {
-    background-image: url("https://files.slack.com/files-pri/T02NE0241-FAY9KBK6F/download/joel-herzog-105060-unsplash.jpg");
+    background-image: url("gazellebg.jpg");
     height: 100%;
 
-    background-position: center;
+    background-position: bottom;
     background-repeat:   no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
