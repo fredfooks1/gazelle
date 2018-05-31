@@ -15,8 +15,10 @@ gazelle_users = [{email: "fred@gazelle.com", password: 123456},
               {email: "tina@gazelle.com", password: 123456},
               {email: "magnus@minimus.latin", password: 123456},
               {email: "magnus@gazelle.com", password: 123456},
-               {email: "tina@gazelle.com", password: 123456},
-               {email: "tina@gazelle.com", password: 123456}
+               {email: "jeff@gazelle.com", password: 123456},
+               {email: "eugenia@gazelle.com", password: 123456},
+               {email: "nick@gazelle.com", password: 123456},
+               {email: "sussan@gazelle.com", password: 123456}
              ]
 
 g_users = []
@@ -26,8 +28,13 @@ end
 
         # the companies start here
 company_users= [{email: "ed@company.com", password: 123456},
-        {email: "ted@me.com", password: 123456},
-        {email: "fred@me.com", password: 123456}
+        {email: "ted@company.com", password: 123456},
+        {email: "shed@company.com", password: 123456},
+        {email: "ned@company.com", password: 123456},
+        {email: "fred@company.com", password: 123456},
+        {email: "red@company.com", password: 123456},
+        {email: "bed@company.com", password: 123456},
+        {email: "lead@company.com", password: 123456}
     ]
 
 c_users = []
@@ -40,7 +47,7 @@ end
 puts 'Creating Companies...'
 
 
-companies = [{name: "Le Wagon", address: "Prins Jørgens Gård 1"}, {name: "Copenhagen FC", address: "Per Henrik Lings Allé 2"}, {name: "Carbnb", address: " Fabriksområdet 52"}]
+companies = [{name: "The Sports Company", address: "Prins Jørgens Gård 1"}, {name: "Copenhagen FC", address: "Per Henrik Lings Allé 2"}, {name: "Carbnb", address: "Fabriksområdet 52"}, {name: "Exact Editions", address: "Adelgade 5"},{name: "Liverpool FC", address: "Struenseegade 7"},{name: "Arsenal FC", address: " Adelgade 5"},{name: "Ninos", address: "Carsten Niebuhrs Gade 11"},{name: "Ed's Company", address: "Sankt Peders Stræde 34"}]
 
 companies.each_with_index do |company_hash, index|
   company = Company.new(company_hash)
@@ -63,7 +70,27 @@ gazelle_runners = [
 
  { first_name: "Magnus", last_name: "Parvus",
    photo: "https://avatars1.githubusercontent.com/u/37999937?s=400&v=4", description: "I just finished High School and have always been interested in Coding. In my off year I decided to do the Le Wagon Bootcamp as I had seen it was the best/only one in Denmark :)",
-   address: "Ørholmgade 6, Copenhagen" }
+   address: "Ørholmgade 6, Copenhagen" },
+
+ { first_name: "Steve", last_name: "Jobs",
+   photo: "https://www.biography.com/.image/t_share/MTE5NDg0MDU0NTIzODQwMDE1/steven-jobs-9354805-2-402.jpg", description: "I just finished High School and have always been interested in Coding. In my off year I decided to do the Le Wagon Bootcamp as I had seen it was the best/only one in Denmark :)",
+   address: "Prins Jørgens Gård 1" },
+
+ { first_name: "Freddie", last_name: "Ljungberg",
+   photo: "http://im.rediff.com/sports/2004/may/25fred.jpg", description: "I just finished High School and have always been interested in Coding. In my off year I decided to do the Le Wagon Bootcamp as I had seen it was the best/only one in Denmark :)",
+   address: "Per Henrik Lings Allé 2" },
+
+ { first_name: "Mr F", last_name: "Springbok",
+   photo: "https://avatars1.githubusercontent.com/u/37999937?s=400&v=4", description: "I just finished High School and have always been interested in Coding. In my off year I decided to do the Le Wagon Bootcamp as I had seen it was the best/only one in Denmark :)",
+   address: "Adelgade 5" },
+
+ { first_name: "Thierry", last_name: "Henry",
+   photo: "http://www4.pictures.zimbio.com/gi/Thierry+Henry+AxQVPiNae-6m.jpg", description: "I just finished High School and have always been interested in Coding. In my off year I decided to do the Le Wagon Bootcamp as I had seen it was the best/only one in Denmark :)",
+   address: "Carsten Niebuhrs Gade 11" },
+
+ { first_name: "Unai", last_name: "Emery",
+   photo: "https://www.telegraph.co.uk/content/dam/football/2018/05/23/TELEMMGLPICT000164415640_trans_NvBQzQNjv4BqFM8JNviqypEqpEVTJZDkiZ5MFS61F7xI8764b2mnKYQ.jpeg?imwidth=450", description: "I just finished High School and have always been interested in Coding. In my off year I decided to do the Le Wagon Bootcamp as I had seen it was the best/only one in Denmark :)",
+   address: "Sankt Peders Stræde 34" }
 ]
 
 
@@ -105,6 +132,24 @@ locations.each_with_index do |location, index|
   puts "The company #{sample_task.company.name} needs the #{sample_task.company.name} task to be completed at #{sample_task.first_location.address}Asap!" if sample_task.save
 end
 
+titles = ["Get some Ink","Make Coffee for the office","Take minutes at a meeting", "Therapy help for Joe", "Coach England to the world cup final", "make Lampard and Gerrard work" ]
+s_descriptions = ["We need some blue inject ink from whsmith","We are brainstorming how to beat belgium", "Mr Hart needs a confidence boost having been dropped for england", "Southgate isn't quite upto the task", "Both the central midfield"]
+states = ["pending", "assigned", "completed", "completed", "completed"]
+
+
+
+puts 'Creating Tasks for the sports company...'
+titles.each_with_index do |title, index|
+  t_hash = {cost_per_hour: 2 , task_time: 1}
+  puts "im at #{index}"
+  s_task = Task.new(t_hash)
+  s_task.title = titles[index]
+  s_task.description = s_descriptions[index]
+  s_task.state = states[index]
+  s_task.company = Company.first
+  s_task.first_location = Location.first
+  puts "The task #{s_task.title} for #{s_task.company.name} is #{s_task.state}" if s_task.save
+end
 
 
 
