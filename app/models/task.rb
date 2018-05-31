@@ -7,14 +7,10 @@ class Task < ApplicationRecord
   belongs_to :second_location, class_name: 'Location', foreign_key: 'second_location_id', optional: true, autosave: true
 
 
-  validates :description, presence: true, uniqueness: { scope: :company }
+  validates :description, presence: true
 
   validates :cost_per_hour, presence: true, numericality: true
   validates :task_time, presence: true, numericality: true
   validates :title, presence: true
-
-  # def second_location_needed?
-  #   task_category.name != "Office"
-  # end
 end
 
