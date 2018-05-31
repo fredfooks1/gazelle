@@ -1,15 +1,16 @@
 <div class="container">
   <div class="row">
      <div class="col-xs-6">
-        <div class="wrapper-new-gazelle">
-          <h1>Task details for: <strong> <%= @search_term %> </strong> </h1>
+        <div class="wrapper-new-task">
+          <h1>TASK DETAILS FOR: <strong> <%= @search_term %> </strong> </h1>
            <%= render 'form', task: @task %>
         </div>
       </div>
       <div class="col-xs-6">
-        <div class="map-box-gazelles text-center">
-          <h4>Gazelle Map</h4>
+        <div class="map-box-task">
+          <h1>GAZELLES NEAR YOU</h1>
           <div id="map-gazelle"
+          style="height: 450px;"
           data-markers="<%= @markers.to_json %>"
           data-company="<%= @company_marker.to_json %>"
           data-gazelles="<%= @names_for_gazelles.to_json %>">

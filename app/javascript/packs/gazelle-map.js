@@ -1,4 +1,6 @@
 import GMaps from 'gmaps/gmaps.js';
+import { autocomplete } from './autocomplete.js';
+
 
 const styles = [
     {
@@ -109,7 +111,7 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
   });
   map.setStyle('map_style');
 
-
+console.log(JSON.parse(mapElement.dataset.company))
   const markers = JSON.parse(mapElement.dataset.markers);
   markers.forEach(function(element, index, theArray) {
       // mark.addListener('click', toggleBounce);
@@ -134,8 +136,8 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
       const mark = map.addMarker(element);
 
 
-      const company_marker = JSON.parse(mapElement.dataset.company);
-      map.addMarker(company_marker);
+       const company_marker = JSON.parse(mapElement.dataset.company);
+       map.addMarker(company_marker);
 
       // Add bounce
        function toggleBounce() {
@@ -155,10 +157,13 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
     map.setCenter(markers[0].lat, markers[0].lng);
     map.setZoom(14);
   } else {
-    map.fitLatLngBounds(markers);
+    // map.fitLatLngBounds(markers);
+    map.setCenter(55.6761, 12.5683);
+    map.setZoom(14);
   }
 }
 
+autocomplete();
 
 
 

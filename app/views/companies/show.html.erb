@@ -1,46 +1,36 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
-  <div class= "stat text-center">
+  <div class= "stat-text-center">
     <h1><%= @company.name%> Company Task Dashboard</h1>
   </div>
-
-
-
-
-  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/copenhagen');">
+  <div class="row">
     <% @company.tasks.each do |task| %>
-    <div class="card-description" class="col-lg-12">
-      <h2><%= task.title %></h2>
-      <p><%= task.description.capitalize %></p>
-      <p><%= task.cost_per_hour %> kr / hour </p>
+    <div class="col-xs-12 col-sm-6 col-lg-10 col-lg-offset-1">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/copenhagen');">
+        <div class="task-status-dash">
+          <% if task.state == "pending" %>
+            <p class="company-task-status-pending">Your task will be assigned to a gazelle shortly</p>
+             <% elsif task.state == "assigned" %>
+            <p class="company-task-status-assigned">Your gazelle is on its way</p>
+            <% if task.gazelle_runner %>
+            <p>Your gazelle will be <%= task.gazelle_runner.first_name %></p>
+            <% end %>
+            <% else %>
+            <p class="company-task-status-completed">Task has been completed</p>
+            <% if task.gazelle_runner %>
+            <p>Your gazelle was <%= task.gazelle_runner.first_name %></p>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="card-description">
+          <h2><%= task.title %></h2>
+          <p><%= task.description.capitalize %></p>
+          <p>Total price: <%= task.cost_per_hour * task.task_time %> </p>
+        </div>
+        <img class="card-user"> <%=  %>
+        <%= link_to "", company_task_path(@company, task), class: "card-link" %>
+      </div>
     </div>
-    <div class="task-status-dash">
-      <% if task.state = "pending" %>
-        <p class="task-status-pending">Your task will be assigned a gazelle shortly</p>
-        <% else %>
-        <p class="task-status-assigned">Your gazelle is on its way</p>
-      <% end %>
-
-    </div>
-    <img class="card-user"> <%=  %>
-    <%= link_to "", company_task_path(@company, task), class: "card-link" %>
     <% end %>
   </div>
-
-
-
-
-  <br>
-  <br>
-
-
-
-
-
-
-
-     <%= link_to 'Edit', edit_company_path(@company), class: "btn btn-danger" %> |
-     <%= link_to 'Back', root_path, class: "btn btn-danger" %>
-</div>
-

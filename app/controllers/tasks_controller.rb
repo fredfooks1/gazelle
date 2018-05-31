@@ -19,43 +19,53 @@ class TasksController < ApplicationController
   end
 
   def show
-
     @company = current_user.company
     @task = Task.find(params[:id])
 
-
-    if  params[:gazelle_runner_id]
-     @gazelle_runner = GazelleRunner.find(params[:gazelle_runner_id])
-    @markers =
-      {
-        lat: gazelle_runner.latitude,
-        lng: gazelle_runner.longitude,
-        icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-      }
-
+    if  @task.gazelle_runner && @task.second_location
+      @markers = [c_marker, g_marker, p_marker]
+      @end_points = {origin: @task.gazelle_runner.address, destination: @task.first_location.address, waypoint: @task.second_location.address}
+    elsif @task.second_location.address
+      @markers = [c_marker, p_marker]
+      @end_points = { destination: @task.first_location.address, waypoint: @task.second_location.address}
+    elsif @task.gazelle_runner
+      @markers = [c_marker, g_marker]
+      @end_points = {origin: @task.gazelle_runner.address, destination: @task.first_location.address}
     else
-      @gazelle_runners = GazelleRunner.where.not(latitude: nil, longitude: nil)
-
-      @markers = @gazelle_runners.map do |gazelle_runner|
-        {
-          lat: gazelle_runner.latitude,
-          lng: gazelle_runner.longitude,
-          icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
-          # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
-        }
-      end
+      @markers = [c_marker]
     end
 
-    @location = @task.first_location
-    if @location
-      @markers << {
+
+  end
+
+  def c_marker
+    # this is the marker of the company
+  @location = @task.first_location
+    {
           lat: @location.latitude,
           lng: @location.longitude,
           icon: ActionController::Base.helpers.asset_path("building.png")
-          # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
         }
-    end
+  end
+
+  def g_marker
+    # this is the marker of the gazelle
+    @gazelle_runner = @task.gazelle_runner
+      gazelle_marker = {
+        lat: @gazelle_runner.latitude,
+        lng: @gazelle_runner.longitude,
+        icon: ActionController::Base.helpers.asset_path("red-gazelle-icon.png")
+       }
+  end
+
+  def p_marker
+    # this is the marker of the pick up location
+       @pick_location = @task.second_location
+      pick_marker = {
+        lat: @pick_location.latitude,
+        lng: @pick_location.longitude,
+        icon: ActionController::Base.helpers.asset_path("placeholder-blue.png")
+      }
   end
 
   def edit
@@ -79,6 +89,7 @@ class TasksController < ApplicationController
         lng: gazelle_runner.longitude
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }
+
     end
 
     @names_for_gazelles = {}
@@ -104,9 +115,15 @@ class TasksController < ApplicationController
     company_location = @company.locations.find_by(address: address)
     company_location = Location.create(address: address, company: @company) unless company_location
 
+
+    second_address = params.dig(:task, :second_location)
+    second_location = Location.create(address: second_address)
+
     @task = Task.new(task_params)
     @task.company = @company
-    @task.first_location = task_location
+    @task.first_location = company_location
+    @task.second_location = second_location
+
     @task.state = "pending"
     @company.user = current_user
     if @task.save
@@ -117,6 +134,12 @@ class TasksController < ApplicationController
     end
   end
 
+  def complete
+    @task = Task.find(params[:id])
+    @task.state = "completed"
+    @task.save
+    redirect_to task_path(@task)
+  end
 
   def update
     @task.update(task_params)
@@ -133,7 +156,7 @@ class TasksController < ApplicationController
   def task_params
     params
       .require(:task)
-      .permit(:second_location, :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :task_category_id, :title)
+      .permit( :gazelle_runner_id, :description, :company_id, :cost_per_hour, :task_time, :title, :state)
 
   end
 
