@@ -29,10 +29,12 @@
       <div class="map-wrapper">
         <div class="task-status">
           <% if @task.state == "pending" %>
-            <p class="task-status-pending">Your task will be assigned a gazelle shortly</p>
-            <% else %>
+            <p class="task-status-pending">Your task will be assigned to a gazelle shortly</p>
+            <% elsif @task.state == "assigned" %>
             <p class="task-status-assigned">Your gazelle is on its way</p>
-          <% end %>
+              <% else %>
+            <p class="task-status-completed">Task has been completed</p>
+              <% end %>
         </div>
         <div id="company-show-map" style="height: 450px;" data-markers="<%= @markers.to_json %>" data-tasks="<%= @tasks.to_json %>"></div>
       </div>

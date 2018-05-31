@@ -54,7 +54,16 @@ h1 {
   border-radius: 4px;
   transition: background 0.3s ease;
   text-align: center;
-
+}
+.task-status-completed {
+  background-color: $lightest-gray;
+  color: white;
+  font-weight: lighter;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  text-align: center;
 }
 
 #company-show-map {
