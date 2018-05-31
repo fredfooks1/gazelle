@@ -60,8 +60,8 @@ companies = Company.all
 
 puts 'Creating Gazelle Runners...'
 gazelle_runners = [
-  { first_name: "Fred", last_name: "Fooks",
-    photo: "https://avatars1.githubusercontent.com/u/37072793?s=400&u=a3da37beff2056ff305a13654be9aa05ceca92af&v=4", description: "Masters in Engineering Science at Sommerville College, University of Oxford. I want to learn to code to have a great understand of the applications of technology. After Le wagon I am working as a technology business analyst for Capgemini London",
+  { first_name: "Julius", last_name: "Lehmann",
+    photo: "https://media.licdn.com/dms/image/C4D03AQGVMaOvMIyDoA/profile-displayphoto-shrink_800_800/0?e=1533168000&v=beta&t=BiKKzLjlwCsjelJ_iqWEtMYlct-oHYy0puWN9V9AZok", description: "swede",
     address: "Asminderødgade 14, Copenhagen" },
 
   { first_name: "Tina", last_name: "Turner",
@@ -120,7 +120,7 @@ locations = Location.all
 titles = ["Get some Ink","Make Coffee for the office","Take minutes at a meeting", "Therapy help for Joe", "Coach England to the world cup final", "make Lampard and Gerrard work" ]
 s_descriptions = ["We need some blue inject ink from whsmith","We are brainstorming how to beat belgium", "Mr Hart needs a confidence boost having been dropped for england", "Southgate isn't quite upto the task", "Both the central midfield"]
 states = ["pending", "assigned", "completed", "completed", "completed"]
-photos = ["/assets/task-route1and2.png","/assets/task-route1and2.png","/assets/task-route3.png","/assets/task-route4.png","/assets/task-route5.png"]
+photos = ["task-route1and2.png","task-route1and2.png","task-route3.png","task-route4.png","task-route5.png"]
 
 
 puts 'Creating Tasks for the sports company...'
@@ -151,7 +151,7 @@ locations.each_with_index do |location, index|
   sample_task.company = sample_task.first_location.company
   sample_task.description = descriptions[index]
   sample_task.title = titles[index]
-  sample_task.photo = "/assets/task-route3.png"
+  sample_task.photo = "task-route3.png"
   sample_task.state = "pending"
   puts "The company #{sample_task.company.name} needs the #{sample_task.company.name} task to be completed at #{sample_task.first_location.address}Asap!" if sample_task.save
 end

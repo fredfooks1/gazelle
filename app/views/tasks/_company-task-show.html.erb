@@ -4,11 +4,11 @@
       <div class="order-summary-box">
         <div class="order-summary">
           <h1>ORDER SUMMARY FOR <strong><%= @task.company.name %></strong></h1>
-        </div>
-        <div class="order-details">
-          <p>You have ordered a gazelle to <strong id="input-details" ><%= @task.title %></strong> with additional details <strong id="input-details"><%= @task.description %></strong> </p>
-        </div>
-        <div class="order-details">
+            </div>
+            <div class="order-details">
+              <p>You have ordered a gazelle to <strong id="input-details" ><%= @task.title %></strong> with additional details <strong id="input-details"><%= @task.description %></strong> </p>
+            </div>
+            <div class="order-details">
           <p>Your total price for <strong id="input-details"><%= @task.task_time %> hours</strong> will be <strong id="input-details"> <%= task.cost_per_hour * task.task_time %> DKK</strong></p>
         </div>
         <div class="card-wrapper">
@@ -24,7 +24,6 @@
         </div>
       </div>
     </div>
-
     <div class="col-xs-12 col-sm-6">
       <div class="map-wrapper">
         <div class="task-status">
