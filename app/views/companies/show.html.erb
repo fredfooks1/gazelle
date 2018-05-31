@@ -9,14 +9,18 @@
     <div class="col-xs-12 col-sm-6 col-lg-10 col-lg-offset-1">
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/copenhagen');">
         <div class="task-status-dash">
-          <% if task.state = "pending" %>
+          <% if task.state == "pending" %>
             <p class="company-task-status-pending">Your task will be assigned to a gazelle shortly</p>
-             <% elsif @task.state == "assigned" %>
+             <% elsif task.state == "assigned" %>
             <p class="company-task-status-assigned">Your gazelle is on its way</p>
-            <p>Your gazelle will be <%= @task.gazelle_runner.first_name %></p>
+            <% if task.gazelle_runner %>
+            <p>Your gazelle will be <%= task.gazelle_runner.first_name %></p>
+            <% end %>
             <% else %>
             <p class="company-task-status-completed">Task has been completed</p>
-            <p>Your gazelle was <%= @task.gazelle_runner.first_name %></p>
+            <% if task.gazelle_runner %>
+            <p>Your gazelle was <%= task.gazelle_runner.first_name %></p>
+            <% end %>
           <% end %>
         </div>
         <div class="card-description">
@@ -30,9 +34,3 @@
     </div>
     <% end %>
   </div>
-
-  <br>
-  <br>
-     <%= link_to 'Edit', edit_company_path(@company), class: "btn btn-danger" %> |
-</div>
-
