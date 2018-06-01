@@ -117,10 +117,10 @@ end
 
 locations = Location.all
 
-titles = ["Get some Ink","Make Coffee for the office","Take minutes at a meeting", "Therapy help for Joe", "Coach England to the world cup final", "make Lampard and Gerrard work" ]
-s_descriptions = ["We need some blue inject ink from whsmith","We are brainstorming how to beat belgium", "Mr Hart needs a confidence boost having been dropped for england", "Southgate isn't quite upto the task", "Both the central midfield"]
-states = ["pending", "assigned", "completed", "completed", "completed"]
-photos = ["task-route1and2.png","task-route1and2.png","task-route3.png","task-route4.png","task-route5.png"]
+titles = ["Get some Ink","Make Coffee for the office","Take minutes at a meeting", "Therapy help for Joe", "Coach England to the world cup final", "make Lampard and Gerrard work" ].reverse!
+s_descriptions = ["We need some blue inject ink from whsmith","We are brainstorming how to beat belgium", "Mr Hart needs a confidence boost having been dropped for england", "Southgate isn't quite upto the task", "Both the central midfield"].reverse!
+states = ["pending", "assigned", "completed", "completed", "completed"].reverse!
+photos = ["task-route1and2.png","task-route1and2.png","task-route3.png","task-route4.png","task-route5.png"].reverse!
 
 
 puts 'Creating Tasks for the sports company...'
