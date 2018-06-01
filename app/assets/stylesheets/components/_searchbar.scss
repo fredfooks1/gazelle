@@ -1,4 +1,9 @@
 // search bar
+#search-bar::-webkit-input-placeholder {
+    color: $gray !important;
+}
+
+
 .search-bar {
   padding: 6px 12px;
   width: 800px;
@@ -7,6 +12,7 @@
   border: none;
   background-color: #41E8C0;
   border-radius: 2px 0px 0px 2px;
+  color: #525B5D;
   &:focus {
     outline: none;
   }
@@ -21,7 +27,7 @@
 }
 
 .search-btn {
-  color: #525B5D;
+  color: $gray;
   font-size: 16px;
   background-color: #41E8C0;
   border: none;

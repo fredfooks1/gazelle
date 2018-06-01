@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class= "stat-text-center">
-    <h1><%= @company.name%> Company Task Dashboard</h1>
+    <h1>Task dashboard for <%= @company.name%></h1>
   </div>
   <div class="row">
     <% @company.tasks.each do |task| %>
@@ -20,6 +20,7 @@
         <div class="card-description">
           <h2><%= task.title.capitalize %></h2>
           <% if task.state == "pending" %>
+          <p>Your gazelle will be assigned shortly</p>
           <% elsif task.state == "assigned" %>
             <% if task.gazelle_runner %>
               <p>Your gazelle will be <%= task.gazelle_runner.first_name %></p>
