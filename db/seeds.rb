@@ -125,6 +125,7 @@ photos = ["task-route1and2.png","task-route1and2.png","task-route3.png","task-ro
 
 puts 'Creating Tasks for the sports company...'
 titles.each_with_index do |title, index|
+  sleep(1)
   t_hash = {cost_per_hour: 2 , task_time: 1}
   puts "im at #{index}"
   s_task = Task.new(t_hash)
