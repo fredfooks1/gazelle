@@ -11,7 +11,7 @@
       <% if current_user && current_user.company %>
         <%= form_tag(new_company_task_path(current_user.company), method: "get", class: "form-inline") do%>
           <div class="home-search-container shared-search-container">
-          <%= text_field_tag :search, params[:search], placeholder: "Create a task e.g. office task or pick-up", class: "search-bar" %>
+          <%= text_field_tag :search, params[:search], placeholder: "Create a task e.g. office task or pick-up", class: "search-bar", id: "search-bar" %>
           <%= submit_tag "Submit", :name => nil, class: "search-btn" %>
           </div>
         <% end %>
