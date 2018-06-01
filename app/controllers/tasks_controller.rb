@@ -122,7 +122,7 @@ class TasksController < ApplicationController
     @task.company = @company
     @task.first_location = company_location
     @task.second_location = second_location
-    @task.photo = "/assets/generic-route.png"
+    @task.photo = "generic.png"
 
     @task.state = "pending"
     @company.user = current_user
