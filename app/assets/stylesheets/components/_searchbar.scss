@@ -27,11 +27,11 @@
 }
 
 .search-btn {
-  color: $gray;
-  font-size: 16px;
+  color: $light-gray;
+  font-size: 25px;
   background-color: #41E8C0;
   border: none;
-  padding: 6px 12px;
+  padding: 6px 18px;
   border-radius: 0px 2px 2px 0px;
   height: 100%;
   display: flex;
@@ -40,7 +40,7 @@
   z-index: 1;
   &:hover {
     text-decoration: none;
-    color: white;
+    color: $lightest-gray;
   }
 }
 
