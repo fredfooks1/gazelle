@@ -11,12 +11,12 @@
             <div class="order-details">
           <p>Your total price for <strong id="input-details"><%= @task.task_time %> hours</strong> will be <strong id="input-details"> <%= task.cost_per_hour * task.task_time %> DKK</strong></p>
         </div>
-        <div class="card-wrapper">
+        <div class="gazelle-card-wrapper">
           <% if @task.state != "pending" %>
             <div class="gazelle-card">
               <div class="gazelle-assigned">
                 <p>Your gazelle today will be</p>
-                <h2><%= @task.gazelle_runner.first_name %></h2>
+                <h2><%= @task.gazelle_runner.first_name %> &nbsp;<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> </h2>
               </div>
               <%= cl_image_tag @task.gazelle_runner.photo, class: "gazelle-image" %>
             </div>
