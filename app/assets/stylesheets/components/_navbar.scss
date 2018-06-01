@@ -49,10 +49,11 @@
   font-size: 14px;
   text-transform: uppercase;
   text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+
 }
 .navbar-wagon-link:hover {
   color: #41E8C0;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 /* Dropdown menu */
