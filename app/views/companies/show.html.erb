@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
+  <div class="t-bar-company-dashboard">
   <div class= "stat-text-center">
-    <h1>Task dashboard for <%= @company.name%></h1>
+    <h1><%= @company.name%> Task Dashboard</h1>
+  </div>
   </div>
   <div class="row">
     <% @company.tasks.order(created_at: :desc).each do |task| %>
