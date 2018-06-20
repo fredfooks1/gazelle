@@ -15,11 +15,12 @@
           <%= button_tag '', {class: 'search-btn'} do %><i class="fas fa-arrow-right"></i><% end %>
           </div>
         <% end %>
+        <% elsif current_user && current_user.gazelle_runner %>
+        <% controller.redirect_to tasks_path %>
         <% else %>
          <br>
          <br>
          <br>
-          <%= link_to "Find a Gazelle task", tasks_path, class: "btn-main" %>
       <% end %>
     </div>
   </div>

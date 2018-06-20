@@ -13,7 +13,7 @@
   <%= f.input :title, label: "", input_html: { value: @search_term }, placeholder: "Enter task title" %>
   <%= f.input :task_time, label: "", placeholder: "Enter length of task (hours)" %>
   <%= f.input :first_location, label: "",  input_html: {value: @company.address} %>
-  <%= f.input :second_location, label: "", placeholder: "Do you need something picked up on route?" %>
+  <%= f.input :second_location, label: "", placeholder: "Type address if you need something picked up on route" %>
   <%= f.input :description, label: "", placeholder: "Other details" %>
   <%= f.input :cost_per_hour, label: "", placeholder: "Enter pay per hour (DKK)" %>
 
